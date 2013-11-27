@@ -13,7 +13,7 @@
     <description></description>
     <display-name>LoginServlet</display-name>
     <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>servlets.LoginServlet</servlet-class>
+    <servlet-class>domain.LoginServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
@@ -23,7 +23,7 @@
     <description></description>
     <display-name>CreateContactServlet</display-name>
     <servlet-name>CreateContactServlet</servlet-name>
-    <servlet-class>servlets.CreateContactServlet</servlet-class>
+    <servlet-class>domain.CreateContactServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>CreateContactServlet</servlet-name>
@@ -33,7 +33,7 @@
     <description></description>
     <display-name>RemoveContactServlet</display-name>
     <servlet-name>RemoveContactServlet</servlet-name>
-    <servlet-class>servlets.RemoveContactServlet</servlet-class>
+    <servlet-class>domain.RemoveContactServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>RemoveContactServlet</servlet-name>

@@ -14,11 +14,11 @@ public class Dao {
 		
 		Session session = null;
 		try{
-		SessionFactory sessionFactory =
-		new Configuration().configure().buildSessionFactory();
-		session = sessionFactory.openSession();
+			SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+			session = sessionFactory.openSession();
 		} catch(Exception e){
-		System.out.println(e.getMessage());
+			System.err.println("ERREUR DETECTE");
+			System.out.println(e.getMessage());
 		}
 	}
 
