@@ -18,7 +18,18 @@ function reset () {
 	Firstname: <input type="text" name="firstname" /><br />
 	Lastname:  <input type="text" name="lastname" /><br />
 	Email:     <input type="text" name="email" /><br />
-		<input type="submit" value="Valider" /> <input type="button" value="Reset" onclick="reset();" />
+	Street:	   <input type="text" name="street" /><br />
+	City:	   <input type="text" name="city" /><br />
+	Zip:	   <input type="text" name="zip" /><br />
+	Country:	   <input type="text" name="country" /><br /><br />
+	
+	Home Phone Number:	   <input type="text" name="homephone" /><br />
+	Office Phone Number:	   <input type="text" name="officephone" /><br />
+	Cellphone Number:	   <input type="text" name="cellphone" /><br />
+	
+	
+	
+		<br /><input type="submit" value="Valider" /> <input type="button" value="Reset" onclick="reset();" />
 </form>
 </body>
 </html>
