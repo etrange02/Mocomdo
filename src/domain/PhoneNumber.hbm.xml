@@ -2,8 +2,8 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 27 nov. 2013 10:30:19 by Hibernate Tools 3.4.0.CR1 -->
-<hibernate-mapping>
-    <class name="domain.PhoneNumber" table="PhoneNumber_Table">
+<hibernate-mapping package="domain">
+    <class name="PhoneNumber" table="PhoneNumber_Table">
         <id column="ID_PHONENUMBER" name="id" type="integer">
             <generator class="increment" />
         </id>
