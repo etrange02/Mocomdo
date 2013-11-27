@@ -8,6 +8,7 @@
         <property name="hibernate.connection.url">jdbc:mysql://localhost/mdoc</property>
         <property name="hibernate.connection.username">allan</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.show_sql">true</property>
         <!-- ici on configure le comportement lors du lancement d'hibernate -->
         <!-- valeur = update i..e si les tables de la base n'existent pas 
         elles sont crees, sinon elles sont MAJ, 
