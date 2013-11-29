@@ -1,7 +1,9 @@
 package domain;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
 import util.*;
 
 public class DAOContact {
@@ -62,8 +64,14 @@ public class DAOContact {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			Transaction tx = session.beginTransaction();
+			
 			contact = (Contact) session.load(Contact.class, criteria);
-			System.out.println(contact.getId());
+			
+			if (contact != null)
+				System.out.println(contact.getId());
+			else
+				System.out.println("Not Found");
+			
 			tx.commit();
 			session.close();
 		} catch (Exception e) {

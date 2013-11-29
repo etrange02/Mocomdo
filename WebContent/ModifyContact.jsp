@@ -18,10 +18,11 @@
 	<h2>Modifier un contact</h2>
 	<br />
 	<form action="ModifyContactServlet" method="post">
+	    <input type="hidden" name="idContact" value=""#{idContact}"" />
 		<table>
-            <tr>
+            <!-- <tr>
                 <td>Id du Contact</td><td><input type="text" name="idContact" id="idContact" /></td>
-            </tr>
+            </tr> -->
             <tr>
                 <td>Firstname</td><td><input type="text" name="firstname" id="firstname" /></td>
             </tr>
