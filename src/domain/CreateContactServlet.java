@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class CreateContactServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private static int id_actuel = 0;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -33,8 +32,7 @@ public class CreateContactServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Dao dao = new Dao();
-		dao.createContact(id_actuel, request.getParameter("firstname"), request.getParameter("lastname"), request.getParameter("email"));
-		id_actuel++;
+		dao.createContact(request.getParameter("firstname"), request.getParameter("lastname"), request.getParameter("email"));
 		response.sendRedirect("CreateContact.jsp");
 	}
 

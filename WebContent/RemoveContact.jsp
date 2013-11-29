@@ -7,15 +7,14 @@
 <title>Remove Contact</title>
 <script type="text/javascript">
 function reset () {
-	document.getElementById("login").setAttribute("value", "");
-	document.getElementById("password").setAttribute("value", "");
+	document.getElementById("idContact").setAttribute("value", "");
 	}
 </script>
 </head>
 <body>
 <h2>Supprimer un contact</h2><br />
 <form action="RemoveContactServlet" method="post">
-	IdContact: <input type="text" name="idContact" /><br />
+	IdContact: <input type="text" name="idContact" id="idContact"/><br />
 		<input type="submit" value="Valider" /> <input type="button" value="Reset" onclick="reset();" />
 </form>
 </body>

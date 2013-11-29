@@ -39,4 +39,24 @@
     <servlet-name>RemoveContactServlet</servlet-name>
     <url-pattern>/RemoveContactServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ModifyContactServlet</display-name>
+    <servlet-name>ModifyContactServlet</servlet-name>
+    <servlet-class>domain.ModifyContactServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModifyContactServlet</servlet-name>
+    <url-pattern>/ModifyContactServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SearchContactServlet</display-name>
+    <servlet-name>SearchContactServlet</servlet-name>
+    <servlet-class>domain.SearchContactServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SearchContactServlet</servlet-name>
+    <url-pattern>/SearchContactServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
