@@ -1,24 +1,23 @@
 package domain;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
+import util.*;
 
 public class DAOContact {
 
 	public void createContact(String firstname, String lastname, String email) {
 		Session session = null;
 		Contact c = new Contact();
-		c.setFirstName(firstname);
-		c.setLastName(lastname);
+		c.setFirstname(firstname);
+		c.setLastname(lastname);
 		c.setEmail(email);
 		try{
-			SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-			session = sessionFactory.openSession();
+			session = HibernateUtil.getSessionFactory().openSession();
 			Transaction tx = session.beginTransaction();
-			session.persist(c);
+			System.out.println(session.save(c));
 			tx.commit();
+			session.close();
 		} catch(Exception e){
 			System.err.println("ERREUR DETECTE");
 			System.out.println(e.getMessage());
@@ -26,14 +25,27 @@ public class DAOContact {
 	}
 	
 	public void modifyContact(int id, String firstname, String lastname, String email) {
-
+		Session session = null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			Transaction tx = session.beginTransaction();
+			Contact c = (Contact) session.load(Contact.class, id);
+			System.out.println(c.getId());
+			c.setFirstname(firstname);
+			c.setLastname(lastname);
+			c.setEmail(email);
+			tx.commit();
+			session.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void removeContact(int id) {
 
 	}
 	
-	public void searchContact() {
+	public void searchContact(String criteria) {
 
 	}
 

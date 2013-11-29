@@ -33,7 +33,7 @@ public class SearchContactServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DAOContact dao = new DAOContact();
-		dao.searchContact();
+		dao.searchContact(request.getParameter("criteria"));
 		response.sendRedirect("SearchContact.jsp");
 	}
 

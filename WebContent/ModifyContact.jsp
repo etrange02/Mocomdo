@@ -18,8 +18,8 @@ function reset () {
 <h2>Modifier un contact</h2><br />
 <form action="ModifyContactServlet" method="post">
 	Id du Contact : <input type="text" name="idContact" id="idContact"/><br />
-	Firstname: <input type="text" name="Firstname" id="firstname"/><br />
-	Lastname: <input type="text" name="Lastname" id="lastname"/><br />
+	Firstname: <input type="text" name="firstname" id="firstname"/><br />
+	Lastname: <input type="text" name="fastname" id="lastname"/><br />
 	Email: <input type="text" name="email" id="email"/><br />
 		<input type="submit" value="Valider" /> <input type="button" value="Reset" onclick="reset();" />
 </form>
