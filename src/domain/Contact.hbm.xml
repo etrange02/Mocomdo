@@ -6,10 +6,10 @@
 		<id column="ID_CONTACT" name="id" type="integer">
 			<generator class="increment" />
 		</id>
-		<property name="firstName">
+		<property name="firstname">
 			<column name="FIRSTNAME"></column>
 		</property>
-		<property name="lastName">
+		<property name="lastname">
 			<column name="LASTNAME"></column>
 		</property>
 		<property name="email">

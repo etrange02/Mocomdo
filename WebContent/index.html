@@ -11,12 +11,22 @@ function reset () {
 </script>
 </head>
 <body>
-<h2>Connexion</h2>
-<form action="LoginServlet" method="post">
-	Login:    <input type="text" name="login" id="login" /> 
-	Password: <input type="password" name="password" id="password" /><br />
-		<input type="submit" value="Valider" /> <input type="button" value="Reset" onclick="reset();" />
-</form>
-
+	<h2>Connexion</h2>
+	<form action="LoginServlet" method="post">
+		<table>
+			<tr>
+				<td>Login</td>
+				<td><input type="text" name="login" id="login" /></td>
+			</tr>
+			<tr>
+				<td>Password</td>
+				<td><input type="password" name="password" id="password" /></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Valider" /></td>
+				<td><input type="button" value="Reset" onclick="reset();" /></td>
+			</tr>
+		</table>
+	</form>
 </body>
 </html>
