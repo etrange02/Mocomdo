@@ -31,7 +31,7 @@ public class CreateContactServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Dao dao = new Dao();
+		DAOContact dao = new DAOContact();
 		dao.createContact(request.getParameter("firstname"), request.getParameter("lastname"), request.getParameter("email"));
 		response.sendRedirect("CreateContact.jsp");
 	}

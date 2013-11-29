@@ -31,7 +31,7 @@ public class RemoveContactServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Dao dao = new Dao();
+		DAOContact dao = new DAOContact();
 		dao.removeContact(Integer.parseInt(request.getParameter("id")));
 		response.sendRedirect("RemoveContact.jsp");
 	}

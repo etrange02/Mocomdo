@@ -32,7 +32,7 @@ public class SearchContactServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Dao dao = new Dao();
+		DAOContact dao = new DAOContact();
 		dao.searchContact();
 		response.sendRedirect("SearchContact.jsp");
 	}
