@@ -18,6 +18,9 @@
 		document.getElementById("officephone").setAttribute("value", "");
 		document.getElementById("cellphone").setAttribute("value", "");
 	}
+	function activeNumSiret() {
+		document.getElementById("idNumSiret").disabled = !document.getElementById("idNumSiret").disabled;
+	}
 </script>
 </head>
 <body>
@@ -26,34 +29,43 @@
 	<form action="CreateContactServlet" method="post">
 	   <table>
            <tr>
-               <td>Firstname</td><td><input type="text" name="firstname" id="firstname" /></td>
+               <td><label for="idfirstname">Firstname</label></td><td><input type="text" name="firstname" id="idfirstname" /></td>
            </tr>
            <tr>
-               <td>Lastname</td><td><input type="text" name="lastname" id="lastname" /></td>
+               <td><label for="idlastname">Lastname</label></td><td><input type="text" name="lastname" id="idlastname" /></td>
            </tr>
            <tr>
-               <td>Email</td><td><input type="text" name="email" id="email" /></td>
+               <td><label for="idemail">Email</label></td><td><input type="text" name="email" id="idemail" /></td>
            </tr>
            <tr>
-               <td>Street</td><td><input type="text" name="street" id="street" /></td>
+               <td><label for="idstreet">Street</label></td><td><input type="text" name="street" id="idstreet" /></td>
            </tr>
            <tr>
-               <td>City</td><td><input type="text" name="city" id="city" /></td>
+               <td><label for="idcity">City</label></td><td><input type="text" name="city" id="idcity" /></td>
            </tr>
            <tr>
-               <td>Zip</td><td><input type="text" name="zip" id="zip" /></td>
+               <td><label for="idzip">Zip</label></td><td><input type="text" name="zip" id="idzip" /></td>
            </tr>
            <tr>
-               <td>Country</td><td><input type="text" name="country" id="country" /></td>
+               <td><label for="idcountry">Country</label></td><td><input type="text" name="country" id="idcountry" /></td>
            </tr>
            <tr>
-               <td>Home Phone Number</td><td><input type="text" name="homephone" id="homephone" /></td>
+               <td><label for="idhomephone">Home Phone Number</label></td><td><input type="text" name="homephone" id="idhomephone" /></td>
            </tr>
            <tr>
-               <td>Office Phone Number</td><td><input type="text" name="officephone" id="officephone" /></td>
+               <td><label for="idofficephone">Office Phone Number</label></td><td><input type="text" name="officephone" id="idofficephone" /></td>
            </tr>
            <tr>
-               <td>Cellphone Number</td><td><input type="text" name="cellphone" id="cellphone" /></td>
+               <td><label for="idcellphone">Cellphone Number</label></td><td><input type="text" name="cellphone" id="idcellphone" /></td>
+           </tr>
+           <tr>
+               <td>Group</td><td><div><input type="checkbox" name="group[]" id="idAmi" /><label for="idAmi">Ami</label><br />
+                                      <input type="checkbox" name="group[]" id="idCollegue" /><label for="idCollegue">Collègue</label><br />
+                                      <input type="checkbox" name="group[]" id="idFamille" /><label for="idFamille">Famille</label><br />
+                                </div></td>
+           </tr>
+           <tr>
+               <td><input type="checkbox" name="entrprise" id="idEntreprise" onclick="activeNumSiret()" /><label for="idEntreprise">Entreprise</label></td><td><input type="text" name="numSiret" id="idNumSiret" disabled="disabled" title="Numéro de siret" /></td>
            </tr>
            <tr>
                <td><input type="submit" value="Valider" /></td><td><input type="button" value="Reset" onclick="reset();" /></td>

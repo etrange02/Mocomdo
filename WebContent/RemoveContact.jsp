@@ -17,7 +17,7 @@
 	<form action="RemoveContactServlet" method="post">
         <table>
             <tr>
-                <td>IdContact</td><td><input type="text" name="idContact" id="idContact" /></td>
+                <td><label for="idContact">IdContact</label></td><td><input type="text" name="idContact" id="idContact" /></td>
             </tr>
             <tr>
                 <td><input type="submit" value="Valider" /></td><td><input type="button" value="Reset" onclick="reset();" /></td>

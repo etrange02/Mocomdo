@@ -24,13 +24,13 @@
                 <td>Id du Contact</td><td><input type="text" name="idContact" id="idContact" /></td>
             </tr> -->
             <tr>
-                <td>Firstname</td><td><input type="text" name="firstname" id="firstname" /></td>
+                <td><label for="idFirstname">Firstname</label></td><td><input type="text" name="firstname" id="idFirstname" /></td>
             </tr>
             <tr>
-                <td>Lastname</td><td><input type="text" name="lastname" id="lastname" /></td>
+                <td><label for="idLastname">Lastname</label></td><td><input type="text" name="lastname" id="idLastname" /></td>
             </tr>
             <tr>
-                <td>Email</td><td><input type="text" name="email" id="email" /></td>
+                <td><label for="idEmail">Email</label></td><td><input type="text" name="email" id="idEmail" /></td>
             </tr>
             <tr>
                 <td><input type="submit" value="Valider" /></td><td><input type="button" value="Reset" onclick="reset();" /></td>

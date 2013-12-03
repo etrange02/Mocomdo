@@ -13,7 +13,7 @@
 <h2>Menu</h2><br />
 <ul>
 <li> <a href="CreateContact.jsp">Créer un nouveau contact</a></li>
-<li> <a href="RemoveContact.jsp">Supprimer un contactc</a></li>
+<li> <a href="RemoveContact.jsp">Supprimer un contact</a></li>
 <li> <a href="ModifyContact.jsp">Modifier un contact</a></li>
 <li> <a href="SearchContact.jsp">Rechercher un contact</a></li>
 </ul>
