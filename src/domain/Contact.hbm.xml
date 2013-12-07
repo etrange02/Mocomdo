@@ -2,7 +2,20 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 3 d?c. 2013 01:07:29 by Hibernate Tools 3.4.0.CR1 -->
-<hibernate-mapping>
-    <class >
+<hibernate-mapping package="domain">
+    <class name="Contact" table="CONTACT_TABLE">
+        <id name="id" type="int" column="ID_CONTACT">
+            <generator class="increment" />
+        </id>
+        
+        <property name="firstname" type="string">
+            <column name="FIRSTNAME" />
+        </property>
+        <property name="lastname" type="string">
+            <column name="LASTNAME" />
+        </property>
+        <property name="email" type="string">
+            <column name="EMAIL" />
+        </property>
     </class>
 </hibernate-mapping>

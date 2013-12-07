@@ -26,7 +26,7 @@ public class DAOContact {
 		}
 	}
 
-	public void modifyContact(int id, String firstname, String lastname, String email) {
+	/*public void modifyContact(int id, String firstname, String lastname, String email) {
 		Session session = null;
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
@@ -78,6 +78,6 @@ public class DAOContact {
 			e.printStackTrace();
 		}
 		return contact;
-	}
+	}*/
 
 }

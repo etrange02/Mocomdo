@@ -33,7 +33,7 @@ public class ModifyContactServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DAOContact dao = new DAOContact();
-		dao.modifyContact(Integer.parseInt(request.getParameter("idContact")),request.getParameter("firstname"), request.getParameter("lastname"), request.getParameter("email"));
+		//dao.modifyContact(Integer.parseInt(request.getParameter("idContact")),request.getParameter("firstname"), request.getParameter("lastname"), request.getParameter("email"));
 		response.sendRedirect("ModifyContact.jsp");
 	}
 
