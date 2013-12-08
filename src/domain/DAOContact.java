@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.ArrayList;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -14,10 +16,22 @@ public class DAOContact {
 		c.setFirstname(firstname);
 		c.setLastname(lastname);
 		c.setEmail(email);
+		Address a = new Address();
+		a.setCity("i");
+		a.setCountry("c");
+		a.setStreet("s");
+		a.setZip("z");
+		c.setAddress(a);
+		
+		ContactGroup cg = new ContactGroup();
+		cg.setGroupName("ami");
+		
 		try{
 			session = HibernateUtil.getSessionFactory().openSession();
 			Transaction tx = session.beginTransaction();
+			System.out.println(session.save(a));
 			System.out.println(session.save(c));
+			System.out.println(session.save(cg));
 			tx.commit();
 			session.close();
 		} catch(Exception e){

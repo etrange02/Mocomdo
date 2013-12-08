@@ -8,20 +8,21 @@ public class Contact {
 	private String lastname;
 	private String email;
 	private Integer id;
-	//private List<ContactGroup> books;
+	private List<ContactGroup> books;
 	//private List<PhoneNumber> phones;
-	//private Address address;
+	private Address address;
 
 	public Contact(){
 		this.firstname="";
 		this.lastname="";
 		this.email="";
 		this.id=-1;
-		//this.books = new ArrayList<>();
+		this.address = null;
+		this.books = new ArrayList<>();
 		//this.phones = new ArrayList<>();
 	}
 
-	/*public List<ContactGroup> getBooks() {
+	public List<ContactGroup> getBooks() {
 		return books;
 	}
 
@@ -29,13 +30,13 @@ public class Contact {
 		this.books = books;
 	}
 	
-	public List<PhoneNumber> getProfiles() {
+	/*public List<PhoneNumber> getProfiles() {
 		return phones;
 	}
 
 	public void setProfiles(List<PhoneNumber> phones) {
 		this.phones = phones;
-	}
+	}*/
 
 	public Address getAddress() {
 		return address;
@@ -43,7 +44,7 @@ public class Contact {
 
 	public void setAddress(Address address) {
 		this.address = address;
-	}*/
+	}
 
 	public String getFirstname() {
 		return firstname;
