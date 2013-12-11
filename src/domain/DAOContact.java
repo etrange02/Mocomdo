@@ -106,5 +106,4 @@ public class DAOContact {
 		}
 		return contact;
 	}
-
 }

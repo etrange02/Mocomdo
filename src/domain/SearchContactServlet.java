@@ -2,6 +2,7 @@ package domain;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,9 +34,16 @@ public class SearchContactServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DAOContact daoContact = new DAOContact();
-		daoContact.searchContact(request.getParameter("criteria"));
+		Contact c = daoContact.searchContact(request.getParameter("criteria"));
 		
-		//response.sendRedirect("ModifyContact.jsp?idContact=1");
+		if (c!=null) {
+			RequestDispatcher jsp = request.getRequestDispatcher("/ModifyContact.jsp");
+			request.setAttribute("contact", c);
+			jsp.forward(request, response);
+			//response.sendRedirect("ModifyContact.jsp");
+		}
+		else
+			response.sendRedirect("SearchContact.jsp");
 	}
 
 }
