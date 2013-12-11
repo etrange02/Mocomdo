@@ -18,8 +18,5 @@
             <list-index column="idx" base="0" />
             <many-to-many class="Contact" column="ID_CONTACT" />
         </list>
-        <property name="version" type="int">
-			<column name="VERSION" />
-		</property>
     </class>
 </hibernate-mapping>

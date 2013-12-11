@@ -18,8 +18,5 @@
         <property name="country" type="string">
             <column name="COUNTRY" />
         </property>
-        <property name="version" type="int">
-			<column name="VERSION" />
-		</property>
     </class>
 </hibernate-mapping>

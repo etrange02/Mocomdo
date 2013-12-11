@@ -19,8 +19,5 @@
         
         <many-to-one name="contact" column="ID_CONTACT" class="Contact"/>
         
-        <property name="version" type="int">
-			<column name="VERSION" />
-		</property>
     </class>
 </hibernate-mapping>

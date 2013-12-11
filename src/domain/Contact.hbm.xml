@@ -32,9 +32,5 @@
 			<list-index column="idx" base="0" />
 			<one-to-many class="PhoneNumber" />
 		</list>
-		
-		<property name="version" type="int">
-			<column name="VERSION" />
-		</property>
 	</class>
 </hibernate-mapping>
