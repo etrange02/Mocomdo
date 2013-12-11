@@ -9,7 +9,7 @@ public class Contact {
 	private String email;
 	private Integer id;
 	private List<ContactGroup> books;
-	//private List<PhoneNumber> phones;
+	private List<PhoneNumber> phones;
 	private Address address;
 
 	public Contact(){
@@ -19,7 +19,7 @@ public class Contact {
 		this.id=-1;
 		this.address = null;
 		this.books = new ArrayList<>();
-		//this.phones = new ArrayList<>();
+		this.phones = new ArrayList<>();
 	}
 
 	public List<ContactGroup> getBooks() {
@@ -30,13 +30,13 @@ public class Contact {
 		this.books = books;
 	}
 	
-	/*public List<PhoneNumber> getProfiles() {
+	public List<PhoneNumber> getPhones() {
 		return phones;
 	}
 
-	public void setProfiles(List<PhoneNumber> phones) {
+	public void setPhones(List<PhoneNumber> phones) {
 		this.phones = phones;
-	}*/
+	}
 
 	public Address getAddress() {
 		return address;

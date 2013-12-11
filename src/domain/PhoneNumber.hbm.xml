@@ -15,5 +15,7 @@
         <property name="phoneNumber" type="string">
             <column name="PHONENUMBER" />
         </property>
+        
+        <many-to-one name="contact" column="ID_CONTACT" class="Contact"/>
     </class>
 </hibernate-mapping>

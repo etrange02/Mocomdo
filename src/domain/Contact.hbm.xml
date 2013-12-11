@@ -18,12 +18,18 @@
 			<column name="EMAIL" />
 		</property>
 		<many-to-one name="address" column="ID_ADDRESS" unique="true"
-			not-null="false" />
+			not-null="false" cascade="all-delete-orphan" />
 
-        <list name="books" table="CONTACT_CONTACTGROUP_TABLE">
-            <key column="ID_CONTACT" />
-            <list-index column="ORDER_GROUP" base="0" />
-            <many-to-many class="ContactGroup" column="ID_GROUP" />
-        </list>
+		<list name="books" table="CONTACT_GROUP_TABLE" cascade="persist">
+			<key column="ID_CONTACT" not-null="true" />
+			<list-index column="idx" base="0" />
+			<many-to-many class="ContactGroup" column="ID_GROUP" />
+		</list>
+		
+		<list name="phones" table="CONTACT_PHONENUMBER_TABLE" inverse="true" cascade="persist">
+			<key column="ID_CONTACT" />
+			<list-index column="idx" base="0" />
+			<one-to-many class="PhoneNumber" />
+		</list>
 	</class>
 </hibernate-mapping>

@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -16,6 +17,7 @@ public class DAOContact {
 		c.setFirstname(firstname);
 		c.setLastname(lastname);
 		c.setEmail(email);
+		c.setPhones(new ArrayList<PhoneNumber>());
 		Address a = new Address();
 		a.setCity("i");
 		a.setCountry("c");
@@ -26,12 +28,19 @@ public class DAOContact {
 		ContactGroup cg = new ContactGroup();
 		cg.setGroupName("ami");
 		
+		List<Contact> cs = new ArrayList<>();
+		cs.add(c);
+		cg.setContacts(cs);
+		List<ContactGroup> book = new ArrayList<>();
+		book.add(cg);
+		c.setBooks(book);
+		
 		try{
 			session = HibernateUtil.getSessionFactory().openSession();
 			Transaction tx = session.beginTransaction();
 			System.out.println(session.save(a));
-			System.out.println(session.save(c));
 			System.out.println(session.save(cg));
+			System.out.println(session.save(c));
 			tx.commit();
 			session.close();
 		} catch(Exception e){
@@ -55,7 +64,7 @@ public class DAOContact {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	public void removeContact(int id) {
 		Session session = null;
@@ -79,7 +88,11 @@ public class DAOContact {
 			session = HibernateUtil.getSessionFactory().openSession();
 			Transaction tx = session.beginTransaction();
 			
-			contact = (Contact) session.load(Contact.class, criteria);
+			StringBuffer sb = new StringBuffer();
+			sb.append("from Contact as c where c.id = ?");
+			List<Contact> liste = session.createQuery(sb.toString()).setInteger(0, Integer.parseInt(criteria)).list();
+			
+			contact = (Contact) (liste.isEmpty() ? null : liste.get(0));
 			
 			if (contact != null)
 				System.out.println(contact.getId());
@@ -92,6 +105,6 @@ public class DAOContact {
 			e.printStackTrace();
 		}
 		return contact;
-	}*/
+	}
 
 }
