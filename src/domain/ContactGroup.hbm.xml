@@ -15,7 +15,7 @@
         
         <list name="contacts" table="CONTACT_GROUP_TABLE" inverse="true" cascade="persist">
             <key column="ID_GROUP" not-null="true" />
-            <list-index column="idx" base="0" />
+            <list-index column="idx" base="0" /> 
             <many-to-many class="Contact" column="ID_CONTACT" />
         </list>
     </class>

@@ -32,5 +32,10 @@
 			<list-index column="idx" base="0" />
 			<one-to-many class="PhoneNumber" />
 		</list>
+		
+		<joined-subclass name="domain.Entreprise" table="ENTREPRISE_TABLE">
+            <key column="CONTACT_ID" /> 
+            <property name="numSiret" column="NUMSIRET" type="int" />            
+        </joined-subclass>
 	</class>
 </hibernate-mapping>
