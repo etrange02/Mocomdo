@@ -8,6 +8,7 @@ public class Contact {
 	private String lastname;
 	private String email;
 	private Integer id;
+	private int version;
 	private List<ContactGroup> books;
 	private List<PhoneNumber> phones;
 	private Address address;

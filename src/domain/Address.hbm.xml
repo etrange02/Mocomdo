@@ -7,6 +7,7 @@
         <id name="id" type="int" column="ID_ADDRESS">
             <generator class="increment" />
         </id>
+        <version name="version" access="field" column="VERSION" />
         
         <property name="city" type="string">
             <column name="CITY" />
@@ -17,5 +18,8 @@
         <property name="country" type="string">
             <column name="COUNTRY" />
         </property>
+        <property name="version" type="int">
+			<column name="VERSION" />
+		</property>
     </class>
 </hibernate-mapping>

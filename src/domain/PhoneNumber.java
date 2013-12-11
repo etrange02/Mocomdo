@@ -4,6 +4,7 @@ public class PhoneNumber {
 	private Integer id;
 	private String phoneKind;
 	private String phoneNumber;
+	private int version;
 	private Contact contact;
 	
 

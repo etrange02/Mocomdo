@@ -6,6 +6,7 @@ import java.util.List;
 public class ContactGroup {
 	private Integer groupId;
 	private String groupName;
+	private int version;
 	private List<Contact> contacts;
 
 	public ContactGroup(){

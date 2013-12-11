@@ -7,6 +7,7 @@
         <id name="id" type="int" column="ID_PHONENUMBER">
             <generator class="increment" />
         </id>
+        <version name="version" access="field" column="VERSION" />
         
         <property name="phoneKind" type="string">
             <column name="PHONEKIND" />
@@ -17,5 +18,9 @@
         </property>
         
         <many-to-one name="contact" column="ID_CONTACT" class="Contact"/>
+        
+        <property name="version" type="int">
+			<column name="VERSION" />
+		</property>
     </class>
 </hibernate-mapping>
