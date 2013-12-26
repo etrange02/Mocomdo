@@ -147,9 +147,8 @@ public class DAOContact {
 			session = HibernateUtil.getSessionFactory().openSession();
 			
 			groups = (ArrayList<ContactGroup>) session.createCriteria(ContactGroup.class)
-						.add(Example.create(group))
-						.list();
-			
+						.add(Example.create(group).excludeProperty("groupId").excludeProperty("contacts").ignoreCase().enableLike())
+						.list();			
 			session.close();
 		} catch (Exception e) {
 			e.printStackTrace();

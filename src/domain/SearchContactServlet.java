@@ -52,12 +52,9 @@ public class SearchContactServlet extends HttpServlet {
 				lc.addAll(iter.next().getContacts());
 		}
 		
-		if (lc.size() > 0) {
-			RequestDispatcher jsp = request.getRequestDispatcher("/SearchContact.jsp");
-			request.setAttribute("listeContact", lc1);
-			jsp.forward(request, response);
-		} else
-			response.sendRedirect("SearchContact.jsp");
+		RequestDispatcher jsp = request.getRequestDispatcher("/SearchContact.jsp");
+		request.setAttribute("listeContact", lc);
+		jsp.forward(request, response);
 	}
 
 }

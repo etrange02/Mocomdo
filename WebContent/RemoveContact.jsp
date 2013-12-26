@@ -15,12 +15,14 @@
 	<h2>Supprimer un contact</h2>
 	<br />
 	<form action="RemoveContactServlet" method="post">
+	   <input type="hidden" name="id" value="${ contact.getId() }" />
         <table>
             <tr>
-                <td><label for="idContact">IdContact</label></td><td><input type="text" name="idContact" id="idContact" /></td>
+                <td>${ contact.getFirstname() }</td>
+                <td><a href="mailto:${ contact.getEmail() }">${ contact.getEmail() }</a></td>
             </tr>
             <tr>
-                <td><input type="submit" value="Valider" /></td><td><input type="button" value="Reset" onclick="reset();" /></td>
+                <td colspan="2"><input type="submit" value="Valider la suppression" /></td>
             </tr>
         </table>
 	</form>
