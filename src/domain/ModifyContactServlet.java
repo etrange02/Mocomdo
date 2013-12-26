@@ -2,6 +2,7 @@ package domain;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +26,24 @@ public class ModifyContactServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		DAOContact dao = new DAOContact();
+		
+		int id = -1;
+		try {
+			id = Integer.parseInt(request.getParameter("id"));
+		} catch (NumberFormatException e) {
+			id = -1;
+		}
+		
+		Contact contact = dao.searchContact(id);
+		
+		if (contact != null) {
+			RequestDispatcher jsp = request.getRequestDispatcher("ModifyContact.jsp");
+			request.setAttribute("contact", contact);
+			jsp.forward(request, response);
+		} else {
+			response.sendRedirect("ModifyContact.jsp");
+		}
 	}
 
 	/**

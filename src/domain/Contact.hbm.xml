@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 3 d?c. 2013 01:07:29 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping package="domain">
-	<class name="Contact" table="CONTACT_TABLE">
+	<class name="Contact" table="CONTACT_TABLE" lazy="false">
 		<id name="id" type="int" column="ID_CONTACT">
 			<generator class="increment" />
 		</id>

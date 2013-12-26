@@ -1,6 +1,9 @@
 package domain;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -34,15 +37,26 @@ public class SearchContactServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DAOContact daoContact = new DAOContact();
-		Contact c = daoContact.searchContact(request.getParameter("criteria"));
+		List<Contact> lc1 = daoContact.searchContactByName(request.getParameter("criteria"));		
+		List<Contact> lc2 = daoContact.searchContactByPhone(request.getParameter("criteria"));
+		List<ContactGroup> lg = daoContact.searchGroupByName(request.getParameter("criteria"));
 		
-		if (c!=null) {
-			RequestDispatcher jsp = request.getRequestDispatcher("/ModifyContact.jsp");
-			request.setAttribute("contact", c);
-			jsp.forward(request, response);
-			//response.sendRedirect("ModifyContact.jsp");
+		List<Contact> lc = new ArrayList<Contact>();
+		if (lc1 != null)
+			lc.addAll(lc1);
+		if (lc2 != null)
+			lc.addAll(lc2);
+		if (lg != null) {
+			Iterator<ContactGroup> iter = lg.iterator();
+			while (iter.hasNext())
+				lc.addAll(iter.next().getContacts());
 		}
-		else
+		
+		if (lc.size() > 0) {
+			RequestDispatcher jsp = request.getRequestDispatcher("/SearchContact.jsp");
+			request.setAttribute("listeContact", lc1);
+			jsp.forward(request, response);
+		} else
 			response.sendRedirect("SearchContact.jsp");
 	}
 

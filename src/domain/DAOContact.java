@@ -6,6 +6,9 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Example;
+import org.hibernate.criterion.Restrictions;
 
 import util.*;
 
@@ -81,25 +84,97 @@ public class DAOContact {
 		}
 	}
 
-	public Contact searchContact(String criteria) {
+	/// From type request
+	/// Search with member name
+	public ArrayList<Contact> searchContactByName(String criteria) {
+		Session session = null;
+		ArrayList<Contact> contacts = null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			
+			StringBuffer sb = new StringBuffer();
+			sb.append("from Contact as c where c.firstname = ? or c.lastname = ?");
+			
+			contacts = (ArrayList<Contact>) session.createQuery(sb.toString()).setString(0, criteria).setString(1, criteria).list();
+			contacts.isEmpty();
+			//List<Contact> liste = session.createQuery(sb.toString()).setInteger(0, Integer.parseInt(criteria)).list();
+			
+			/*contact = (Contact) (liste.isEmpty() ? null : liste.get(0));
+			
+			if (contact != null)
+				System.out.println(contact.getId());
+			else
+				System.out.println("Not Found");*/
+			
+			session.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return contacts;
+	}
+	
+	/// Criteria type
+	/// Simple type
+	public ArrayList<Contact> searchContactByPhone(String phone) {
+		Session session = null;
+		ArrayList<Contact> contacts = null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			
+			StringBuffer phoneRequest = new StringBuffer("%");
+			phoneRequest.append(phone);
+			phoneRequest.append("%");
+			
+			contacts = (ArrayList<Contact>) session.createCriteria(Contact.class)
+						.createCriteria("phones")
+							.add(Restrictions.ilike("phoneNumber", phoneRequest.toString()))
+						.list();
+			
+			session.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return contacts;
+	}
+	
+	/// Example type request
+	public ArrayList<ContactGroup> searchGroupByName(String criteria) {
+		Session session = null;
+		ArrayList<ContactGroup> groups = null;
+		try {
+			ContactGroup group = new ContactGroup();
+			group.setGroupName(criteria);
+			session = HibernateUtil.getSessionFactory().openSession();
+			
+			groups = (ArrayList<ContactGroup>) session.createCriteria(ContactGroup.class)
+						.add(Example.create(group))
+						.list();
+			
+			session.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return groups;
+	}
+	
+	public Contact searchContact(int id) {		
 		Session session = null;
 		Contact contact = null;
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
-			Transaction tx = session.beginTransaction();
 			
-			StringBuffer sb = new StringBuffer();
-			sb.append("from Contact as c where c.id = ?");
-			List<Contact> liste = session.createQuery(sb.toString()).setInteger(0, Integer.parseInt(criteria)).list();
+			ArrayList<Contact> contacts =
+					(ArrayList<Contact>) session.createCriteria(Contact.class)
+					.add(Restrictions.eq("id", id))
+					.list();
 			
-			contact = (Contact) (liste.isEmpty() ? null : liste.get(0));
+			contact = (Contact) (contacts.isEmpty() ? null : contacts.get(0));
 			
 			if (contact != null)
 				System.out.println(contact.getId());
 			else
 				System.out.println("Not Found");
 			
-			tx.commit();
 			session.close();
 		} catch (Exception e) {
 			e.printStackTrace();
