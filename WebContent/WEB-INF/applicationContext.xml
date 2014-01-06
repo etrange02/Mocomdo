@@ -7,4 +7,14 @@
     </bean>
     <bean id="beanDAOContactGroup" class="domain.DAOContactGroup" scope="singleton">
     </bean>
+    <bean id="beanContact" class="domain.Contact" scope="prototype">
+    </bean>
+    <bean id="beanEntreprise" class="domain.Entreprise" scope="prototype">
+    </bean>
+    <bean id="beanAddress" class="domain.Address" scope="prototype">
+    </bean>
+    <bean id="beanContactGroup" class="domain.ContactGroup" scope="prototype">
+    </bean>
+    <bean id="beanPhoneNumber" class="domain.PhoneNumber" scope="prototype">
+    </bean>
 </beans>

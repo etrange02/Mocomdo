@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -19,6 +20,13 @@ public class DAOContactGroup {
 					(ArrayList<ContactGroup>) session.createCriteria(ContactGroup.class).add(Restrictions.ilike("groupName", criteria)).list();
 			
 			contactGroup = (ContactGroup) (contactGroups.isEmpty() ? null : contactGroups.get(0));
+			if (contactGroup != null) {
+				Iterator<Contact> it = contactGroup.getContacts().iterator();
+				while(it.hasNext())
+					it.next();
+			}
+			
+			session.flush();
 						
 			session.close();
 		} catch (Exception e) {

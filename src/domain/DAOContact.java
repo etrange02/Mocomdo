@@ -22,30 +22,23 @@ public class DAOContact {
 		try{
 			session = HibernateUtil.getSessionFactory().openSession();
 			Transaction tx = session.beginTransaction();
-			System.out.println(session.save(contact));
+			session.save(contact);
 			
 			Iterator<ContactGroup> iter = contact.getBooks().iterator();
 			while (iter.hasNext()) {
-				ContactGroup cg = iter.next();
-				try {
-					session.update(cg);
-				} catch (HibernateException he) {
-					session.save(cg);
-				}
+				session.saveOrUpdate(iter.next());
 			}
 
 			Iterator<PhoneNumber> iter2 = contact.getPhones().iterator();
 			while (iter2.hasNext()) {
-				PhoneNumber pn = iter2.next();
-				try {
-					session.update(pn);
-				} catch (HibernateException he) {
-					session.save(pn);
-				}
+				session.saveOrUpdate(iter2.next());
 			}
 			
 			tx.commit();
 			session.close();
+			
+			System.out.println("\nok\n");
+			
 		} catch(Exception e){
 			System.err.println("ERREUR DETECTE");
 			System.out.println(e.getMessage());

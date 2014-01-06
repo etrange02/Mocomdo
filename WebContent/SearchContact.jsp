@@ -67,23 +67,17 @@
  				   out.print(c.getFirstname());
  				   out.print(" ");
  				   out.print(c.getLastname());	   
-                    out.print("</td><td>");
+                   out.print("</td>");   
+                   out.print("<td>");
                     out.print("<form action=\"ModifyContactServlet\" method=\"get\"><input type=\"hidden\" value=\"");
                     out.print(c.getId());
-                    out.print("\" name=\"id\" /><input type=\"submit\" value=\"Modifier\" /></form>");
-                    out.print("</td><td>");
+                    out.print("\" name=\"id\" /><input type=\"submit\" value=\"Modifier (pas fait pour le moment)\" /></form>");
+                    out.print("</td>");
+                    out.print("<td>");
                    out.print("<form action=\"RemoveContactServlet\" method=\"get\"><input type=\"hidden\" value=\"");
                     out.print(c.getId());
-                   out.print("\" name=\"id\" /><input type=\"submit\" value=\"Supprimer (pas fait pour le moment)\" /></form>");     
+                   out.print("\" name=\"id\" /><input type=\"submit\" value=\"Supprimer\" /></form>");     
                     out.println("</td></tr>");
-	               
- 	               /*out.print("<tr><td><a href=\"ModifyContactServlet?id=");
- 	               out.print(c.getId());
- 	               out.print("\">");
- 	               out.print(c.getFirstname());
- 	               out.print(" ");
- 	               out.print(c.getLastname());
- 	               out.println("</a></td></tr>");*/
  			   }
  	           out.println("</table>");
  		   } else {

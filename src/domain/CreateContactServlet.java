@@ -48,11 +48,11 @@ public class CreateContactServlet extends HttpServlet {
 		Contact c = null;
 		
 		if (request.getParameter("entreprise") != null) {
-			Entreprise e = new Entreprise();
+			Entreprise e = (Entreprise) context.getBean("beanEntreprise");
 			e.setNumSiret(Integer.parseInt(request.getParameter("numSiret")));
 			c = e;
 		} else {
-			c = new Contact();
+			c = (Contact) context.getBean("beanContact");
 		}
 		
 		c.setFirstname(request.getParameter("firstname"));
@@ -80,7 +80,7 @@ public class CreateContactServlet extends HttpServlet {
 			ContactGroup cg = ((DAOContactGroup) context.getBean("beanDAOContactGroup"))
 					.searchContact(groups.get(i));
 			if (cg == null) {
-				cg = new ContactGroup();
+				cg = (ContactGroup) context.getBean("beanContactGroup");
 				cg.setGroupName(groups.get(i));
 			}
 			contactGroups.add(cg);
@@ -90,19 +90,19 @@ public class CreateContactServlet extends HttpServlet {
 		
 		List<PhoneNumber> pns = new ArrayList<PhoneNumber>();		
 		if (!request.getParameter("homephone").isEmpty()) {
-			PhoneNumber pn = new PhoneNumber();
+			PhoneNumber pn = (PhoneNumber) context.getBean("beanPhoneNumber");			
 			pn.setPhoneNumber(request.getParameter("homephone"));
 			pn.setPhoneKind("homephone");
 			pns.add(pn);
 		}
 		if (!request.getParameter("officephone").isEmpty()) {
-			PhoneNumber pn = new PhoneNumber();
+			PhoneNumber pn = (PhoneNumber) context.getBean("beanPhoneNumber");
 			pn.setPhoneNumber(request.getParameter("officephone"));
 			pn.setPhoneKind("officephone");
 			pns.add(pn);
 		}
 		if (!request.getParameter("cellphone").isEmpty()) {
-			PhoneNumber pn = new PhoneNumber();
+			PhoneNumber pn = (PhoneNumber) context.getBean("beanPhoneNumber");
 			pn.setPhoneNumber(request.getParameter("cellphone"));
 			pn.setPhoneKind("cellphone");
 			pns.add(pn);

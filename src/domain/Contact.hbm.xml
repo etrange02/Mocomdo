@@ -4,6 +4,7 @@
 <!-- Generated 3 d?c. 2013 01:07:29 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping package="domain">
 	<class name="Contact" table="CONTACT_TABLE" lazy="false">
+        <cache usage="read-write"/>
 		<id name="id" type="int" column="ID_CONTACT">
 			<generator class="increment" />
 		</id>
@@ -21,13 +22,13 @@
 		<many-to-one name="address" column="ID_ADDRESS" unique="true"
 			not-null="false" cascade="all-delete-orphan" />
 
-		<list name="books" table="CONTACT_GROUP_TABLE" cascade="persist">
+		<list name="books" table="CONTACT_GROUP_TABLE" cascade="persist" lazy="false" outer-join="true">
 			<key column="ID_CONTACT" not-null="true" />
 			<list-index column="idx" base="0" />
 			<many-to-many class="ContactGroup" column="ID_GROUP" />
 		</list>
 		
-		<list name="phones" table="CONTACT_PHONENUMBER_TABLE" inverse="true" cascade="persist">
+		<list name="phones" table="CONTACT_PHONENUMBER_TABLE" inverse="true" cascade="persist" lazy="false">
 			<key column="ID_CONTACT" />
 			<list-index column="idx" base="0" />
 			<one-to-many class="PhoneNumber" />
