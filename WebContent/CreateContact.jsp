@@ -59,13 +59,13 @@
                <td><label for="idcellphone">Cellphone Number</label></td><td><input type="text" name="cellphone" id="idcellphone" /></td>
            </tr>
            <tr>
-               <td>Group</td><td><div><input type="checkbox" name="group[]" id="idAmi" /><label for="idAmi">Ami</label><br />
-                                      <input type="checkbox" name="group[]" id="idCollegue" /><label for="idCollegue">Collègue</label><br />
-                                      <input type="checkbox" name="group[]" id="idFamille" /><label for="idFamille">Famille</label><br />
+               <td>Group</td><td><div><input type="checkbox" name="ami" id="idAmi" /><label for="idAmi">Ami</label><br />
+                                      <input type="checkbox" name="collegue" id="idCollegue" /><label for="idCollegue">Collègue</label><br />
+                                      <input type="checkbox" name="famille" id="idFamille" /><label for="idFamille">Famille</label><br />
                                 </div></td>
            </tr>
            <tr>
-               <td><input type="checkbox" name="entrprise" id="idEntreprise" onclick="activeNumSiret()" /><label for="idEntreprise">Entreprise</label></td><td><input type="text" name="numSiret" id="idNumSiret" disabled="disabled" title="Numéro de siret" /></td>
+               <td><input type="checkbox" name="entreprise" id="idEntreprise" onclick="activeNumSiret()" /><label for="idEntreprise">Entreprise</label></td><td><input type="text" name="numSiret" id="idNumSiret" disabled="disabled" title="Numéro de siret" /></td>
            </tr>
            <tr>
                <td><input type="submit" value="Valider" /></td><td><input type="button" value="Reset" onclick="reset();" /></td>

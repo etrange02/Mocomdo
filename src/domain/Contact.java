@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Contact {
@@ -29,6 +30,14 @@ public class Contact {
 
 	public void setBooks(List<ContactGroup> books) {
 		this.books = books;
+		
+		ContactGroup cg = null;
+		Iterator<ContactGroup> it = books.iterator();
+		while (it.hasNext()) {
+			cg = it.next();
+			if (!cg.getContacts().contains(this))
+				cg.getContacts().add(this);
+		}
 	}
 	
 	public List<PhoneNumber> getPhones() {
@@ -37,6 +46,14 @@ public class Contact {
 
 	public void setPhones(List<PhoneNumber> phones) {
 		this.phones = phones;
+		
+		PhoneNumber pn = null;
+		Iterator<PhoneNumber> it = phones.iterator();
+		while (it.hasNext()) {
+			pn = it.next();
+			if (pn.getContact() == null)
+				pn.setContact(this);
+		}
 	}
 
 	public Address getAddress() {

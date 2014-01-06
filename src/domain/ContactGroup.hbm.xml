@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 3 d?c. 2013 01:07:29 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping package="domain">
-    <class name="ContactGroup" table="GROUP_TABLE">
+    <class name="ContactGroup" table="GROUP_TABLE" lazy="false">
         <id name="groupId" type="int" column="ID_GROUP">
             <generator class="increment" />
         </id>
@@ -13,7 +13,7 @@
             <column name="GROUPNAME" />
         </property>
         
-        <list name="contacts" table="CONTACT_GROUP_TABLE" inverse="true" cascade="persist" lazy="false">
+        <list name="contacts" table="CONTACT_GROUP_TABLE" inverse="true" cascade="persist" lazy="false" outer-join="true">
             <key column="ID_GROUP" not-null="true" />
             <list-index column="idx" base="0" /> 
             <many-to-many class="Contact" column="ID_CONTACT" />

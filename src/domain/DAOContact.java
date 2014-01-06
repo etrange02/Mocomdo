@@ -1,9 +1,11 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
@@ -14,36 +16,34 @@ import util.*;
 
 public class DAOContact {
 
-	public void createContact(String firstname, String lastname, String email) {
+	public void createContact(Contact contact) {
 		Session session = null;
-		Contact c = new Contact();
-		c.setFirstname(firstname);
-		c.setLastname(lastname);
-		c.setEmail(email);
-		c.setPhones(new ArrayList<PhoneNumber>());
-		Address a = new Address();
-		a.setCity("i");
-		a.setCountry("c");
-		a.setStreet("s");
-		a.setZip("z");
-		c.setAddress(a);
-		
-		ContactGroup cg = new ContactGroup();
-		cg.setGroupName("ami");
-		
-		List<Contact> cs = new ArrayList<>();
-		cs.add(c);
-		cg.setContacts(cs);
-		List<ContactGroup> book = new ArrayList<>();
-		book.add(cg);
-		c.setBooks(book);
 		
 		try{
 			session = HibernateUtil.getSessionFactory().openSession();
 			Transaction tx = session.beginTransaction();
-			System.out.println(session.save(a));
-			System.out.println(session.save(cg));
-			System.out.println(session.save(c));
+			System.out.println(session.save(contact));
+			
+			Iterator<ContactGroup> iter = contact.getBooks().iterator();
+			while (iter.hasNext()) {
+				ContactGroup cg = iter.next();
+				try {
+					session.update(cg);
+				} catch (HibernateException he) {
+					session.save(cg);
+				}
+			}
+
+			Iterator<PhoneNumber> iter2 = contact.getPhones().iterator();
+			while (iter2.hasNext()) {
+				PhoneNumber pn = iter2.next();
+				try {
+					session.update(pn);
+				} catch (HibernateException he) {
+					session.save(pn);
+				}
+			}
+			
 			tx.commit();
 			session.close();
 		} catch(Exception e){
@@ -97,14 +97,6 @@ public class DAOContact {
 			
 			contacts = (ArrayList<Contact>) session.createQuery(sb.toString()).setString(0, criteria).setString(1, criteria).list();
 			contacts.isEmpty();
-			//List<Contact> liste = session.createQuery(sb.toString()).setInteger(0, Integer.parseInt(criteria)).list();
-			
-			/*contact = (Contact) (liste.isEmpty() ? null : liste.get(0));
-			
-			if (contact != null)
-				System.out.println(contact.getId());
-			else
-				System.out.println("Not Found");*/
 			
 			session.close();
 		} catch (Exception e) {
