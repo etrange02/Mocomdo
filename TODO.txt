@@ -1,0 +1,9 @@
+A Faire :
+- Finir la page de modification (modifyContact.jsp et ModifyContactServlet.java)
+- AOP (aspects, TP3, il faut une idée !) -> Le premier 0 des numéros de téléphones devient "+33"
+- HibernateTemplate
+- Insertion de JSF 2.x ou Struts 1.3
+
+Bogues :
+- Problème lors de la récupération des contactGroups au bout de plusieurs insertions (indépendant du cache, c'est un problème de lazy loading)
+
