@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.aspectj.lang.ProceedingJoinPoint;
+
 public class Contact {
 	private String firstname;
 	private String lastname;
@@ -96,6 +98,8 @@ public class Contact {
 		this.id = id;
 	}
 	
-	
+	public void toupper(String name) {
+		this.lastname = name.toUpperCase();
+	}
 	
 }

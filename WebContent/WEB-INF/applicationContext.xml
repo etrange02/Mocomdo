@@ -1,20 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
-
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop-2.0.xsd ">
+    
+    <!-- DAO beans -->
     <bean id="beanDAOContact" class="domain.DAOContact" scope="singleton">
     </bean>
     <bean id="beanDAOContactGroup" class="domain.DAOContactGroup" scope="singleton">
-    </bean>
+    </bean>    
+    
+    <!-- Other beans -->
     <bean id="beanContact" class="domain.Contact" scope="prototype">
     </bean>
     <bean id="beanEntreprise" class="domain.Entreprise" scope="prototype">
-    </bean>
+    </bean>    
     <bean id="beanAddress" class="domain.Address" scope="prototype">
     </bean>
     <bean id="beanContactGroup" class="domain.ContactGroup" scope="prototype">
     </bean>
     <bean id="beanPhoneNumber" class="domain.PhoneNumber" scope="prototype">
     </bean>
+    
+    <bean id="beanAddressJussieu" class="domain.Address" scope="prototype">
+        <property name="street" value="4 place jussieu" />
+        <property name="city" value="Paris" />
+        <property name="zip" value="75006" />
+        <property name="country" value="France" />
+    </bean>
+    
+    <!-- AOP -->    
+    <aop:config>        
+        <aop:aspect ref="beanContact">
+            <aop:pointcut id="beanContactToUPPER"
+                expression="execution(* Contact.setLastname(..))" />
+            <aop:after pointcut-ref="beanContactToUPPER" method="toupper" />
+        </aop:aspect>
+    </aop:config>
 </beans>

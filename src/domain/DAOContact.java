@@ -44,23 +44,35 @@ public class DAOContact {
 			System.out.println(e.getMessage());
 		}
 	}
-
-	/*public void modifyContact(int id, String firstname, String lastname, String email) {
+	
+	public void updateContact(Contact contact) {
 		Session session = null;
-		try {
+		
+		try{
 			session = HibernateUtil.getSessionFactory().openSession();
 			Transaction tx = session.beginTransaction();
-			Contact c = (Contact) session.load(Contact.class, id);
-			System.out.println(c.getId());
-			c.setFirstname(firstname);
-			c.setLastname(lastname);
-			c.setEmail(email);
+			session.update(contact);
+			
+			/*Iterator<ContactGroup> iter = contact.getBooks().iterator();
+			while (iter.hasNext()) {
+				session.saveOrUpdate(iter.next());
+			}
+
+			Iterator<PhoneNumber> iter2 = contact.getPhones().iterator();
+			while (iter2.hasNext()) {
+				session.saveOrUpdate(iter2.next());
+			}*/
+			
 			tx.commit();
 			session.close();
-		} catch (Exception e) {
-			e.printStackTrace();
+			
+			System.out.println("\nok\n");
+			
+		} catch(Exception e){
+			System.out.println("ERREUR update");
+			System.out.println(e.getMessage());
 		}
-	}*/
+	}
 
 	public void removeContact(int id) {
 		Session session = null;
@@ -133,7 +145,18 @@ public class DAOContact {
 			
 			groups = (ArrayList<ContactGroup>) session.createCriteria(ContactGroup.class)
 						.add(Example.create(group).excludeProperty("groupId").excludeProperty("contacts").ignoreCase().enableLike())
-						.list();			
+						.list();
+			
+			if (groups != null) {
+				Iterator<ContactGroup> iter = groups.iterator();
+				while (iter.hasNext()) {
+					Iterator<Contact> it = iter.next().getContacts().iterator();
+					while (it.hasNext())
+						it.next().getFirstname();
+				}
+			}
+			
+			session.flush();
 			session.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -141,7 +164,7 @@ public class DAOContact {
 		return groups;
 	}
 	
-	public Contact searchContact(int id) {		
+	public Contact searchContact(int id) {
 		Session session = null;
 		Contact contact = null;
 		try {
@@ -149,16 +172,18 @@ public class DAOContact {
 			
 			ArrayList<Contact> contacts =
 					(ArrayList<Contact>) session.createCriteria(Contact.class)
-					.add(Restrictions.eq("id", id))
-					.list();
+					.add(Restrictions.eq("id", id)).list();
 			
 			contact = (Contact) (contacts.isEmpty() ? null : contacts.get(0));
 			
-			if (contact != null)
+			if (contact != null) {
 				System.out.println(contact.getId());
-			else
+				contact.getAddress();
+				for (ContactGroup cg: contact.getBooks());
+				for (PhoneNumber pn: contact.getPhones());
+			} else
 				System.out.println("Not Found");
-			
+			session.flush();
 			session.close();
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -69,15 +69,15 @@
  				   out.print(c.getLastname());	   
                    out.print("</td>");   
                    out.print("<td>");
-                    out.print("<form action=\"ModifyContactServlet\" method=\"get\"><input type=\"hidden\" value=\"");
-                    out.print(c.getId());
-                    out.print("\" name=\"id\" /><input type=\"submit\" value=\"Modifier (pas fait pour le moment)\" /></form>");
-                    out.print("</td>");
-                    out.print("<td>");
+                   out.print("<form action=\"ModifyContactServlet\" method=\"get\"><input type=\"hidden\" value=\"");
+                   out.print(c.getId());
+                   out.print("\" name=\"id\" /><input type=\"submit\" value=\"Modifier\" /></form>");
+                   out.print("</td>");
+                   out.print("<td>");
                    out.print("<form action=\"RemoveContactServlet\" method=\"get\"><input type=\"hidden\" value=\"");
-                    out.print(c.getId());
+                   out.print(c.getId());
                    out.print("\" name=\"id\" /><input type=\"submit\" value=\"Supprimer\" /></form>");     
-                    out.println("</td></tr>");
+                   out.println("</td></tr>");
  			   }
  	           out.println("</table>");
  		   } else {

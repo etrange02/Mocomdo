@@ -77,8 +77,8 @@ public class CreateContactServlet extends HttpServlet {
 			groups.add("famille");
 		
 		for (int i = 0; i<groups.size(); ++i) {
-			ContactGroup cg = ((DAOContactGroup) context.getBean("beanDAOContactGroup"))
-					.searchContact(groups.get(i));
+			//ContactGroup cg = ((DAOContactGroup) context.getBean("beanDAOContactGroup")).searchContactGroup(groups.get(i));
+			ContactGroup cg = null;
 			if (cg == null) {
 				cg = (ContactGroup) context.getBean("beanContactGroup");
 				cg.setGroupName(groups.get(i));
