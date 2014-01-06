@@ -98,8 +98,8 @@ public class Contact {
 		this.id = id;
 	}
 	
-	public void toupper(String name) {
-		this.lastname = name.toUpperCase();
+	public void toupper(String lastname) {
+		this.lastname = lastname.toUpperCase();
 	}
 	
 }

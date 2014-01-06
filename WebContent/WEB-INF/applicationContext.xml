@@ -32,12 +32,13 @@
         <property name="country" value="France" />
     </bean>
     
-    <!-- AOP -->    
-    <aop:config>        
+    <!-- AOP -->
+    <!-- <aop:config>        
         <aop:aspect ref="beanContact">
             <aop:pointcut id="beanContactToUPPER"
-                expression="execution(* Contact.setLastname(..))" />
-            <aop:after pointcut-ref="beanContactToUPPER" method="toupper" />
+                expression="execution(* Contact.setLastname(..))
+                           and args(lastname)" />
+            <aop:after pointcut-ref="beanContactToUPPER" method="toupper" arg-names="lastname" />
         </aop:aspect>
-    </aop:config>
+    </aop:config>-->
 </beans>

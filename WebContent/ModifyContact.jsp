@@ -35,7 +35,7 @@
                 <td><label for="idEmail">Email</label></td><td><input type="text" name="email" id="idEmail" value="${ contact.getEmail() }" /></td>
             </tr>
             <tr>
-                <td><input type="submit" value="Valider (non fonctionnel)" /></td><td><input type="button" value="Reset" onclick="reset();" /></td>
+                <td><input type="submit" value="Valider" /></td><td><input type="button" value="Reset" onclick="reset();" /></td>
             </tr>
 		</table>
 	</form>
