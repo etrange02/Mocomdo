@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insert title here</title>
+<title>Mocomdo</title>
 <link rel="stylesheet" href="css/normalize.css">
 <link rel="stylesheet" href="css/foundation.css">
 <link rel="stylesheet" href="css/design.css">
@@ -13,71 +13,67 @@
 
 </head>
 <body>
-	<%
-		Cookie cookie = null;
-		if (request.getParameter("login") != null) {
-		cookie = new Cookie("mocomdo_username",request.getParameter("login"));
-		response.addCookie(cookie);
-			}else{
-		   Cookie[] cookies = null;
-		   cookies = request.getCookies();
-		   if( cookies != null ){
-		      for (int i = 0; i < cookies.length; i++){
-		         if(cookies[i].getName().equals("mocomdo_username")){
-		        	 cookie=cookies[i];
-		        	 break;
-		         }
-		      }
-		    }
-		}  
-		if(cookie == null){
-			
-	%>
-	<jsp:forward page="index.jsp"/>
-	<% } %>
+<%
+   Cookie cookie = null;
+   Cookie[] cookies = null;
+   cookies = request.getCookies();
+   if( cookies != null ){
+      for (int i = 0; i < cookies.length; i++){
+    	  if(cookies[i].getName().equals("mocomdo_username")){
+        	 cookie=cookies[i];
+        	 break;
+         }
+      }
+  }
+   
+%>
 	<div class="truc small-10 columns small-centered">
 		<nav class="top-bar contain-to-grid fixed" data-topbar>
 			<ul class="title-area">
-				<li class="name"><h1>
-						<a href="index.jsp">Mocomdo</a>
-					</h1></li>
+				<li class="name"><h1><a href="index.jsp">Mocomdo</a></h1></li>		
 			</ul>
 			<section class="top-bar-section">
 				<!-- Right Nav Section -->
 				<ul class="right">
+					<%
+						if (cookie == null) {
+					%>
+					<li class="active"><a href="connection.html"
+						data-reveal-id="ConnectionModal" data-reveal-ajax="true">Connexion</a></li>
+					<%
+						} else {
+					%>
 					<li class="has-dropdown"><a href="#">Account</a>
 						<ul class="dropdown">
 							<li><a href="deconnection.jsp" >Deconnexion</a></li>
 						</ul></li>
+					<%
+						}
+					%>
 				</ul>
 			</section>
 		</nav>
 		<div class="myBody small-12 columns"></div>
 		<div class="small-12 columns">
+		<%
+						if (cookie != null) {
+					%>
 			<div class="small-12 small-centered columns">
 				<ul class="button-group round even-6">
-					<li><a href="#" class="button small" disabled>-</a></li>
-					<li><a href="#" class="button small" disabled>-</a></li>
-					<li><a href="CreateContact.jsp" class="button small">Create
-							Contact</a></li>
-					<li><a href="SearchContact.jsp" class="button small">Search
-							Contact</a></li>
+				<li><a href="#" class="button small" disabled>-</a></li>
+				<li><a href="#" class="button small" disabled>-</a></li>
+					<li><a href="CreateContact.jsp" class="button small">Create Contact</a></li>
+					<li><a href="SearchContact.jsp" class="button small">Search Contact</a></li>
 					<li><a href="#" class="button small" disabled>-</a></li>
 					<li><a href="#" class="button small" disabled>-</a></li>
 				</ul>
 			</div>
+			<% } %>
 			<div class="panel callout radius">
-				<%
-					if (cookie != null) {
-				%>
-				<h1>
-					Hello Mr.
-					<%=cookie.getValue()%></h1>
-				<br />
-				<%
-					}
-				%>
-
+				<p>Ce site a été réalisé dans le cadre d'un projet pour l'UE Mdoc.<br/><br/><br/>
+				Auteurs :<br/>
+						  David Lecoconnier <br/>
+						  Allan Mottier</p>
 			</div>
 		</div>
 	</div>
