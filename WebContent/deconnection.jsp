@@ -16,7 +16,7 @@ if( cookies != null ){
  	  out.println("parcours cookie n "+i+" !");
       if(cookies[i].getName().equals("mocomdo_username")){
      	 cookie=cookies[i];
-     	 cookie.setMaxAge(0); out.println("detru cookie"); response.addCookie(cookie);
+     	 cookie.setMaxAge(0); response.addCookie(cookie);
      	 break;
       }
    }
