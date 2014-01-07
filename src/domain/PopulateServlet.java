@@ -35,6 +35,12 @@ public class PopulateServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		DAOContact dao = (DAOContact) context.getBean("beanDAOContact");
+
+		dao.createContact((Contact) context.getBean("person1"));
+		dao.createContact((Contact) context.getBean("person2"));
+		
 		response.sendRedirect("Menu.jsp");
 	}
 }

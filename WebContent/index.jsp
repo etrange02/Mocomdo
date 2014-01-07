@@ -67,7 +67,7 @@
 					<li><a href="SearchContact.jsp" class="button small">Search
 							Contact</a></li>
 					<li><a href="#" class="button small" disabled>-</a></li>
-					<li><form action="PopulateServlet" method="post">
+					<li><form action="PopulateServlet" method="get">
 							<input type="submit" value="Peupler" class="button small" />
 						</form></li>
 					<li><a href="#" class="button small" disabled>-</a></li>

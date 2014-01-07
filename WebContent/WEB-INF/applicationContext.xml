@@ -95,6 +95,8 @@
         <property name="lastname" value="Lecoconnier" />
         <property name="email" value="david.lecoconnier@gmail.com" />
         <property name="address"><ref bean="beanAddressJussieu" /></property>
+        <property name="phones"><list></list></property>
+        <property name="books"><list></list></property>
     </bean>    
     <bean id="person2" class="domain.Contact" scope="prototype">
         <property name="firstname" value="Allan" />
@@ -103,8 +105,8 @@
         <property name="address"><ref bean="beanAddressParis" /></property>
         <property name="phones">
             <list>
-                <ref bean="phone1" />
-                <ref bean="phone2" />
+                <!-- <ref bean="phone1" />
+                <ref bean="phone2" /> -->
             </list>
         </property>
         <property name="books">
