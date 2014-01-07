@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
 			rd.forward(request, response);
 		}
 		else {
-			response.sendRedirect("index.html");
+			response.sendRedirect("index.jsp");
 		}
 			
 	}
