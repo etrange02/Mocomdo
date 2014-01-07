@@ -8,14 +8,71 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Search Contact</title>
+<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/foundation.css">
+<link rel="stylesheet" href="css/design.css">
+<script src="js/modernizr.js"></script>
 </head>
 <body>
+<%
+		Cookie cookie = null;
+		   Cookie[] cookies = null;
+		   cookies = request.getCookies();
+		   if( cookies != null ){
+		      for (int i = 0; i < cookies.length; i++){
+		         if(cookies[i].getName().equals("mocomdo_username")){
+		        	 cookie=cookies[i];
+		        	 break;
+		         }
+		      }
+		    }
+		if(cookie == null){
+		
+	%>
+	<jsp:forward page="index.jsp"/>
+	<% } %>
+	<div class="truc small-10 columns small-centered">
+		<nav class="top-bar contain-to-grid fixed" data-topbar>
+			<ul class="title-area">
+				<li class="name"><h1><a href="index.jsp">Mocomdo</a></h1></li>		
+			</ul>
+			<section class="top-bar-section">
+				<!-- Right Nav Section -->
+				<ul class="right">
+					<li class="has-dropdown"><a href="#">Account</a>
+						<ul class="dropdown">
+							<li><a href="deconnection.jsp" >Deconnexion</a></li>
+						</ul></li>
+				</ul>
+				<ul class="left">
+				</ul>
+			</section>
+		</nav>
+		<div class="myBody small-12 columns"></div>
+			<div class="small-12 columns">
+			<div class="small-12 small-centered columns">
+				<ul class="button-group round even-6">
+					<li><a href="#" class="button small" disabled>-</a></li>
+
+					<li><a href="CreateContact.jsp" class="button small">Create
+							Contact</a></li>
+					<li><a href="SearchContact.jsp" class="button small">Search
+							Contact</a></li>
+					<li><a href="#" class="button small" disabled>-</a></li>
+					<li><form action="PopulateServlet" method="post">
+							<input type="submit" value="Peupler" class="button small" />
+						</form></li>
+					<li><a href="#" class="button small" disabled>-</a></li>
+				</ul>
+			</div>
+			<div class="panel callout radius">
 	<h2>Rechercher un contact</h2>
 	<br />
 	<form action="SearchContactServlet" method="post">
 		<input type="text" name="criteria" id="criteria" />
-		<input type="submit" value="Rechercher" />
+		<input type="submit" value="Rechercher" class="button small"/>
 	</form>
 	<%--<c:if test="${ listeContact != null }">
 	   <c:choose>
@@ -63,20 +120,20 @@
  			   out.println("<table>");
  			   while (iter.hasNext()) {
  				   c = iter.next();
- 				   out.print("<tr><td>");
+ 				   out.print("<tr><td><label>");
  				   out.print(c.getFirstname());
  				   out.print(" ");
  				   out.print(c.getLastname());	   
-                   out.print("</td>");   
+                   out.print("</label></td>");   
                    out.print("<td>");
                    out.print("<form action=\"ModifyContactServlet\" method=\"get\"><input type=\"hidden\" value=\"");
                    out.print(c.getId());
-                   out.print("\" name=\"id\" /><input type=\"submit\" value=\"Modifier\" /></form>");
+                   out.print("\" name=\"id\" /><input type=\"submit\" value=\"Modifier\" class=\"button tiny\"/></form>");
                    out.print("</td>");
                    out.print("<td>");
                    out.print("<form action=\"RemoveContactServlet\" method=\"get\"><input type=\"hidden\" value=\"");
                    out.print(c.getId());
-                   out.print("\" name=\"id\" /><input type=\"submit\" value=\"Supprimer\" /></form>");     
+                   out.print("\" name=\"id\" /><input type=\"submit\" value=\"Supprimer\" class=\"button tiny alert\"/></form>");     
                    out.println("</td></tr>");
  			   }
  	           out.println("</table>");
@@ -85,5 +142,19 @@
  		   }
  	   }
  	%>
+ 	</div>
+		</div>
+	</div>
+
+	<div id="ConnectionModal" class="reveal-modal small" data-reveal></div>
+
+	<script src="js/vendor/jquery.js"></script>
+	<script src="js/foundation/foundation.js"></script>
+	<script src="js/foundation/foundation.topbar.js"></script>
+	<script src="js/foundation/foundation.reveal.js"></script>
+	<script src="js/foundation/foundation.accordion.js"></script>
+	<script src="js/foundation/foundation.abide.js"></script>
+
+	<script> $(document).foundation(); </script>
 </body>
 </html>
