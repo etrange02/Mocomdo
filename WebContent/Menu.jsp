@@ -13,43 +13,31 @@
 
 </head>
 <body>
-<<<<<<< HEAD
-<% if(request.getParameter("login") !=null){  %>
-<h1> Hello Mr. <%=request.getParameter("login")%></h1><br />
-<% } %>
-<h2>Menu</h2><br />
-<ul>
-<li> <a href="CreateContact.jsp">Créer un nouveau contact</a></li>
-<!-- <li> <a href="RemoveContact.jsp">Supprimer un contact</a></li> -->
-<!-- <li> <a href="ModifyContact.jsp">Modifier un contact</a></li> -->
-<li> <a href="SearchContact.jsp">Rechercher un contact</a></li>
-</ul>
-<form action="SearchContactServlet" method="post">
-    <input type="submit" value="Peupler" />
-</form>
-=======
+
 	<%
 		Cookie cookie = null;
 		if (request.getParameter("login") != null) {
-		cookie = new Cookie("mocomdo_username",request.getParameter("login"));
-		response.addCookie(cookie);
-			}else{
-		   Cookie[] cookies = null;
-		   cookies = request.getCookies();
-		   if( cookies != null ){
-		      for (int i = 0; i < cookies.length; i++){
-		         if(cookies[i].getName().equals("mocomdo_username")){
-		        	 cookie=cookies[i];
-		        	 break;
-		         }
-		      }
-		    }
-		}  
-		if(cookie == null){
-			
+			cookie = new Cookie("mocomdo_username",
+					request.getParameter("login"));
+			response.addCookie(cookie);
+		} else {
+			Cookie[] cookies = null;
+			cookies = request.getCookies();
+			if (cookies != null) {
+				for (int i = 0; i < cookies.length; i++) {
+					if (cookies[i].getName().equals("mocomdo_username")) {
+						cookie = cookies[i];
+						break;
+					}
+				}
+			}
+		}
+		if (cookie == null) {
 	%>
-	<jsp:forward page="index.jsp"/>
-	<% } %>
+	<jsp:forward page="index.jsp" />
+	<%
+		}
+	%>
 	<div class="truc small-10 columns small-centered">
 		<nav class="top-bar contain-to-grid fixed" data-topbar>
 			<ul class="title-area">
@@ -62,9 +50,10 @@
 				<ul class="right">
 					<li class="has-dropdown"><a href="#">Account</a>
 						<ul class="dropdown">
-							<li><a href="deconnection.jsp" >Deconnexion</a></li>
+							<li><a href="deconnection.jsp">Deconnexion</a></li>
 						</ul></li>
 				</ul>
+
 			</section>
 		</nav>
 		<div class="myBody small-12 columns"></div>
@@ -72,12 +61,15 @@
 			<div class="small-12 small-centered columns">
 				<ul class="button-group round even-6">
 					<li><a href="#" class="button small" disabled>-</a></li>
-					<li><a href="#" class="button small" disabled>-</a></li>
+
 					<li><a href="CreateContact.jsp" class="button small">Create
 							Contact</a></li>
 					<li><a href="SearchContact.jsp" class="button small">Search
 							Contact</a></li>
 					<li><a href="#" class="button small" disabled>-</a></li>
+					<li><form action="SearchContactServlet" method="post">
+							<input type="submit" value="Peupler" class="button small" />
+						</form></li>
 					<li><a href="#" class="button small" disabled>-</a></li>
 				</ul>
 			</div>
@@ -103,8 +95,9 @@
 	<script src="js/foundation/foundation.js"></script>
 	<script src="js/foundation/foundation.topbar.js"></script>
 	<script src="js/foundation/foundation.reveal.js"></script>
->>>>>>> 279ae5b1c9082158ed1a2f791e4f74b7f5bfc44e
 
-	<script> $(document).foundation(); </script>
+	<script>
+		$(document).foundation();
+	</script>
 </body>
 </html>

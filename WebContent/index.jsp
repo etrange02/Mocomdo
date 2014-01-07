@@ -60,11 +60,16 @@
 					%>
 			<div class="small-12 small-centered columns">
 				<ul class="button-group round even-6">
-				<li><a href="#" class="button small" disabled>-</a></li>
-				<li><a href="#" class="button small" disabled>-</a></li>
-					<li><a href="CreateContact.jsp" class="button small">Create Contact</a></li>
-					<li><a href="SearchContact.jsp" class="button small">Search Contact</a></li>
 					<li><a href="#" class="button small" disabled>-</a></li>
+
+					<li><a href="CreateContact.jsp" class="button small">Create
+							Contact</a></li>
+					<li><a href="SearchContact.jsp" class="button small">Search
+							Contact</a></li>
+					<li><a href="#" class="button small" disabled>-</a></li>
+					<li><form action="SearchContactServlet" method="post">
+							<input type="submit" value="Peupler" class="button small" />
+						</form></li>
 					<li><a href="#" class="button small" disabled>-</a></li>
 				</ul>
 			</div>
