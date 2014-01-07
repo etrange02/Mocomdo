@@ -6,7 +6,7 @@
                            http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
                            http://www.springframework.org/schema/aop
                            http://www.springframework.org/schema/aop/spring-aop-2.0.xsd ">
-    
+   
     <!-- Hibernate template -->
     <bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
@@ -32,12 +32,36 @@
                  <prop key="hibernate.cache.use_second_level_cache">true</prop>
                  <prop key="hibernate.hbm2ddl.auto">create</prop>   <!-- update --> 
                  <prop key="hibernate.show_sql">true</prop> <!--  -->
+                 <prop key="hibernate.generate_statistics">true</prop>
             </props>
         </property>
     </bean>
     
     <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
        <property name="sessionFactory" ref="mySessionFactory"/>
+    </bean>
+    
+        <!-- Monitoring -->
+    <bean id="jmxExporter" class="org.springframework.jmx.export.MBeanExporter">
+        <property name="beans">
+            <map>
+                <entry key="Hibernate:application=Statistics" value-ref="hibernateStatisticsBean"/>
+            </map>
+        </property>
+    </bean>
+    
+    <bean id="hibernateStatisticsBean" class="org.hibernate.jmx.StatisticsService">
+        <property name="statisticsEnabled" value="true"/>
+        <property name="sessionFactory">
+            <!-- Uncomment the following when using Hibernate directly -->
+            <ref local="mySessionFactory"/>
+    
+            <!-- Uncomment the following when using Hibernate via JPA
+                 (Assuming the managed EMF is named 'entityManagerFactory'.
+                  Namespace is: xmlns:util="http://www.springframework.org/schema/util")
+            -->
+            <!-- util:property-path path="entityManagerFactory.sessionFactory" /-->
+        </property>
     </bean>
     
     <!-- DAO beans -->
@@ -125,4 +149,6 @@
             <aop:after pointcut-ref="beanContactToUPPER" method="toupper" arg-names="lastname" />
         </aop:aspect>
     </aop:config>-->
+    
+    
 </beans>
