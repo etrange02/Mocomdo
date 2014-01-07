@@ -15,13 +15,15 @@ Tomcat pour Eclipse
 - Dans la barre de menu, Window -> Preferences
 - Dans la colonne de gauche, déroulez 'server' et sélectionnez 'Runtime Environments'
 - Cliquez ensuite sur 'Search', sélectionnez le répertoire où se trouve Tomcat.
+Maintenant, la version 7.0.47 du serveur tomcat est reconnu par Eclipse.
 
-L'archive se présente sous forme de fichier WAR
+L'archive se présente sous forme de fichier Zip, décompressez le fichier dans le workspace
 Importez ensuite le projet :
 - File -> Import
-- Ensuite, Web -> WAR file
+- Ensuite, 'General -> Existing Projects into Workspace'
 - Cliquez sur Next
-- Ensuite, à l'aide de 'Browse', retrouvez l'archive 'Mocomdo.WAR'. Normalement, la version 7.0.47 du serveur tomcat est déjà sélectionnée.
+- Sélectionnez le workspace (à l'aide de 'Browse' si nécessaire)
+- Assurez-vous que le projet Mocomdo est sélectionné puis cliquez sur 'Finish'.
 
 Paramétrage :
 Déroulez l'arbre jusqu'à voir 'Mocomdo -> WebContent -> WEB-INF -> applicationContext.xml'.
