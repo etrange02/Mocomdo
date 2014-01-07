@@ -125,4 +125,10 @@
             <aop:after pointcut-ref="beanContactToUPPER" method="toupper" arg-names="lastname" />
         </aop:aspect>
     </aop:config>-->
+    <aop:config>
+    	<aop:aspect ref="changePhoneBean" >
+    		<aop:before pointcut="execution(* setPhoneNumber(String)) and args(phoneNumber)" method="changeNumber" arg-names="phoneNumber"/>
+    	</aop:aspect>
+    </aop:config>
+    <bean id="changePhoneBean" class="domain.ChangePhone"/>
 </beans>
