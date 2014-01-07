@@ -7,13 +7,48 @@
                            http://www.springframework.org/schema/aop
                            http://www.springframework.org/schema/aop/spring-aop-2.0.xsd ">
     
+    <!-- Hibernate template -->
+    <bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/mdocDB"/>
+        <property name="username" value="root"/>
+        <property name="password" value=""/>
+    </bean>
+    
+    <bean id="mySessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="dataSource" ref="myDataSource"/>
+        <property name="mappingResources">
+            <list>
+              <value>domain/Contact.hbm.xml</value>
+              <value>domain/PhoneNumber.hbm.xml</value>
+              <value>domain/ContactGroup.hbm.xml</value>
+              <value>domain/Address.hbm.xml</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>              
+                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                 <prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+                 <prop key="hibernate.cache.use_second_level_cache">true</prop>
+                 <prop key="hibernate.hbm2ddl.auto">update</prop>   <!-- update --> 
+                 <prop key="hibernate.show_sql">true</prop> <!--  -->
+            </props>
+        </property>
+    </bean>
+    
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+       <property name="sessionFactory" ref="mySessionFactory"/>
+    </bean>
+    
     <!-- DAO beans -->
     <bean id="beanDAOContact" class="domain.DAOContact" scope="singleton">
+        <property name="sessionFactory" ref="mySessionFactory"/>
     </bean>
     <bean id="beanDAOContactGroup" class="domain.DAOContactGroup" scope="singleton">
+        <property name="sessionFactory" ref="mySessionFactory"/>
     </bean>    
     
-    <!-- Other beans -->
+    <!-- Resources beans -->
     <bean id="beanContact" class="domain.Contact" scope="prototype">
     </bean>
     <bean id="beanEntreprise" class="domain.Entreprise" scope="prototype">

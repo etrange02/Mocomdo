@@ -3,10 +3,10 @@
                                          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 	<session-factory name="Factory">
-		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<!-- <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="hibernate.connection.url">jdbc:mysql://localhost/mdocDB</property>
 		<property name="hibernate.connection.username">root</property>
-		<property name="hibernate.show_sql">true</property>
+		 --><property name="hibernate.show_sql">true</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
         <property name="hibernate.cache.use_second_level_cache">true</property>
@@ -15,9 +15,9 @@
 			elles sont MAJ, la valeur =create i.e. creation à chaque lancement -->
 		<property name="hbm2ddl.auto">create</property>   <!-- update -->     
 		<!-- mapping files/lien vers les fichiers de mapping -->
-		<mapping resource="domain/Contact.hbm.xml" />
+		<!-- <mapping resource="domain/Contact.hbm.xml" />
 		<mapping resource="domain/PhoneNumber.hbm.xml" />
 		<mapping resource="domain/ContactGroup.hbm.xml" />
-		<mapping resource="domain/Address.hbm.xml" />		
+		<mapping resource="domain/Address.hbm.xml" /> -->
 	</session-factory>
 </hibernate-configuration>

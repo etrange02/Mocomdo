@@ -17,7 +17,9 @@
 <!-- <li> <a href="ModifyContact.jsp">Modifier un contact</a></li> -->
 <li> <a href="SearchContact.jsp">Rechercher un contact</a></li>
 </ul>
-
+<form action="SearchContactServlet" method="post">
+    <input type="submit" value="Peupler" />
+</form>
 
 </body>
 </html>

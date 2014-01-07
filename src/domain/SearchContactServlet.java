@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 /**
  * Servlet implementation class SearchContactServlet
  */
@@ -36,10 +39,12 @@ public class SearchContactServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DAOContact daoContact = new DAOContact();
-		List<Contact> lc1 = daoContact.searchContactByName(request.getParameter("criteria"));		
-		List<Contact> lc2 = daoContact.searchContactByPhone(request.getParameter("criteria"));
-		List<ContactGroup> lg = daoContact.searchGroupByName(request.getParameter("criteria"));
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		DAOContact dao = (DAOContact) context.getBean("beanDAOContact");
+		
+		List<Contact> lc1 = dao.searchContactByName(request.getParameter("criteria"));		
+		List<Contact> lc2 = dao.searchContactByPhone(request.getParameter("criteria"));
+		List<ContactGroup> lg = dao.searchGroupByName(request.getParameter("criteria"));
 		
 		List<Contact> lc = new ArrayList<Contact>();
 		if (lc1 != null)
