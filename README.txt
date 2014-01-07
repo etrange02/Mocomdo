@@ -6,21 +6,33 @@ MySQL 5.6.12
 Lien : http://apache.websitebeheerjd.nl/tomcat/tomcat-7/v7.0.47/bin/apache-tomcat-7.0.47-windows-x86.zip
 Une fois l'archive téléchargée, dézippez-la à la racine de votre lecteur c:\.
 
-2- Eclipse -
-Commencez par désipper le contenu de l'archive dans votre workspace Eclipse.
-Importez ensuite le projet :
-- File -> Import -> General/Existing Projects into Workspace
-- Cliquez sur Next
-- Dans le premier champ, sélectionnez votre workspace. Utilisez 'Browse' s'il n'est pas présent dans la liste déroulante.
-- Vérifiez que le projet 'Mocomdo' est coché
-- Cliquez sur Finish
+2- MySQL -
+On suppose qu'une base de données intitulé 'mdocDB' existe sur le serveur MySQL.
 
-Le projet est maintenant ouvert dans votre Eclipse.
+3- Eclipse -
 
-Ensuite, indiquons où se trouve Tomcat
+Tomcat pour Eclipse
 - Dans la barre de menu, Window -> Preferences
 - Dans la colonne de gauche, déroulez 'server' et sélectionnez 'Runtime Environments'
+- Cliquez ensuite sur 'Search', sélectionnez le répertoire où se trouve Tomcat.
 
+L'archive se présente sous forme de fichier WAR
+Importez ensuite le projet :
+- File -> Import
+- Ensuite, Web -> WAR file
+- Cliquez sur Next
+- Ensuite, à l'aide de 'Browse', retrouvez l'archive 'Mocomdo.WAR'. Normalement, la version 7.0.47 du serveur tomcat est déjà sélectionnée.
+
+Paramétrage :
+Déroulez l'arbre jusqu'à voir 'Mocomdo -> WebContent -> WEB-INF -> applicationContext.xml'.
+Ouvrez le fichier 'applicationContext.xml', passez la vue en 'Source'. Le paramétrage de l'application se fait dans ce fichier.
+Dans la partie 'Hibernate Template', vous devez entrez votre configuration.
+Par défaut, le projet est configuré pour un serveur MySQL accessible sur le port 3306.
+
+Lancement du serveur :
+- Faites un clic droit sur 'index.jsp', 'Run as -> Run on Server'
+- Sélectionnez 'Tomcat v7.0 Server' et cliquez sur 'Finish'
+Le serveur démarre.
 
 3 - Monitoring du cache -
 Lien : http://sourceforge.net/projects/hibernate-jcons/files/beta/hibernate-jconsole-1.0.7.jar/download
