@@ -30,7 +30,7 @@
                  <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                  <prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
                  <prop key="hibernate.cache.use_second_level_cache">true</prop>
-                 <prop key="hibernate.hbm2ddl.auto">update</prop>   <!-- update --> 
+                 <prop key="hibernate.hbm2ddl.auto">create</prop>   <!-- update --> 
                  <prop key="hibernate.show_sql">true</prop> <!--  -->
             </props>
         </property>
@@ -65,6 +65,53 @@
         <property name="city" value="Paris" />
         <property name="zip" value="75006" />
         <property name="country" value="France" />
+    </bean>
+    <bean id="beanAddressParis" class="domain.Address" scope="prototype">
+        <property name="street" value="4 place jussieu" />
+        <property name="city" value="Paris" />
+        <property name="zip" value="75006" />
+        <property name="country" value="France" />
+    </bean>
+    <bean id="phone1" class="domain.PhoneNumber" scope="prototype">
+        <property name="phoneKind" value="homephone" />
+        <property name="phoneNumber" value="0123456" />
+        <!-- <property name="contact"><ref bean="person2" /></property> -->
+    </bean>
+    <bean id="phone2" class="domain.PhoneNumber" scope="prototype">
+        <property name="phoneKind" value="cellphone" />
+        <property name="phoneNumber" value="0987654" />
+        <!-- <property name="contact"><ref bean="person2" /></property> -->
+    </bean>
+    <bean id="group1" class="domain.ContactGroup" scope="prototype">
+        <property name="groupName" value="ami" />
+        <!-- <property name="contacts">
+            <list>
+                <ref bean="person2" />
+            </list>
+        </property> -->
+    </bean>
+    <bean id="person1" class="domain.Contact" scope="prototype">
+        <property name="firstname" value="David" />
+        <property name="lastname" value="Lecoconnier" />
+        <property name="email" value="david.lecoconnier@gmail.com" />
+        <property name="address"><ref bean="beanAddressJussieu" /></property>
+    </bean>    
+    <bean id="person2" class="domain.Contact" scope="prototype">
+        <property name="firstname" value="Allan" />
+        <property name="lastname" value="Mottier" />
+        <property name="email" value="allan.mottier@gmail.com" />
+        <property name="address"><ref bean="beanAddressParis" /></property>
+        <property name="phones">
+            <list>
+                <ref bean="phone1" />
+                <ref bean="phone2" />
+            </list>
+        </property>
+        <property name="books">
+            <list>
+                <ref bean="group1" />
+            </list>
+        </property>
     </bean>
     
     <!-- AOP -->

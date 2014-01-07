@@ -13,6 +13,9 @@
         <property name="city" type="string"> 
             <column name="CITY" />
         </property>
+        <property name="street" type="string"> 
+            <column name="STREET" />
+        </property>
         <property name="zip" type="string">
             <column name="ZIP" />
         </property>
