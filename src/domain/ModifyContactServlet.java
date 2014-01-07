@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.IOException;
+import java.util.Iterator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -44,6 +45,19 @@ public class ModifyContactServlet extends HttpServlet {
 		if (contact != null) {
 			RequestDispatcher jsp = request.getRequestDispatcher("ModifyContact.jsp");
 			request.setAttribute("contact", contact);
+			request.setAttribute("address", contact.getAddress());
+			/*Iterator<PhoneNumber> iter = contact.getPhones().iterator();
+			PhoneNumber pn = null;
+			while (iter.hasNext()) {
+				pn = iter.next();
+				request.setAttribute(pn.getPhoneKind(), pn.getPhoneNumber());
+			}
+			Iterator<ContactGroup> it = contact.getBooks().iterator();
+			ContactGroup cg = null;
+			while (it.hasNext()) {
+				cg = it.next();
+				request.setAttribute(cg.getGroupName(), "on");
+			}*/
 			jsp.forward(request, response);
 		} else {
 			response.sendRedirect("ModifyContact.jsp");
@@ -68,6 +82,13 @@ public class ModifyContactServlet extends HttpServlet {
 		contact.setFirstname(request.getParameter("firstname"));
 		contact.setLastname(request.getParameter("lastname"));
 		contact.setEmail(request.getParameter("email"));
+		
+		contact.getAddress().setCity(request.getParameter("city"));
+		contact.getAddress().setCountry(request.getParameter("country"));
+		contact.getAddress().setStreet(request.getParameter("street"));
+		contact.getAddress().setZip(request.getParameter("zip"));
+		
+		//Iterator<PhoneNumber> it = contact.getPhones().iterator();
 		
 		dao.updateContact(contact);
 		

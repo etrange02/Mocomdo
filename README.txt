@@ -34,7 +34,7 @@ Lancement du serveur :
 - Sélectionnez 'Tomcat v7.0 Server' et cliquez sur 'Finish'
 Le serveur démarre.
 
-3 - Monitoring du cache -
+4 - Monitoring du cache -
 Lien : http://sourceforge.net/projects/hibernate-jcons/files/beta/hibernate-jconsole-1.0.7.jar/download
 Commencez par récupérer le jar donné ci-dessous.
 

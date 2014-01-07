@@ -151,9 +151,11 @@ public class DAOContact extends HibernateDaoSupport {
 				Contact contact = (Contact) (contacts.isEmpty() ? null : contacts.get(0));
 				
 				if (contact != null) {
-					/*contact.getAddress();
-					for (ContactGroup cg: contact.getBooks());
-					for (PhoneNumber pn: contact.getPhones());*/
+					contact.getAddress().getStreet();
+					for (ContactGroup cg: contact.getBooks())
+						cg.getGroupName();
+					for (PhoneNumber pn: contact.getPhones())
+						pn.getPhoneKind();
 					return contact;
 				}
 				return null;
