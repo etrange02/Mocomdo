@@ -113,7 +113,7 @@
                         <label for="idcountry">Country</label> <input type="text" name="country"
                             id="idcountry" value="${ address.getCountry() }"/>
                     </div>
-                    <!-- <dl class="accordion" data-accordion>
+                    <dl class="accordion" data-accordion>
                         <dd>
                             <a href="#panel1">Phone</a>
                             <div id="panel1" class="content">
@@ -144,18 +144,18 @@
                                 <div class="input-wrapper">
                                     <label>Group</label>
                                         <input type="checkbox" name="ami" id="idAmi" 
-                                        checked="<% /*if (request.getAttribute("ami")!= null) out.print("checked"); else out.print("");*/ %>" />
+                                        <% if (request.getAttribute("ami")!= null) out.print("checked=\"checked\""); %> />
                                         <label for="idAmi">Ami</label><br />
                                         <input type="checkbox" name="collegue" id="idCollegue" 
-                                        checked="<% /*if (request.getAttribute("collegue")!= null) out.print("checked"); else out.print("");*/ %>" />
+                                        <% if (request.getAttribute("collegue")!= null) out.print("checked=\"checked\""); %> />
                                         <label for="idCollegue">Collègue</label><br />
                                         <input type="checkbox" name="famille" id="idFamille" 
-                                        checked="<% /*if (request.getAttribute("famille")!= null) out.print("checked"); else out.print("");*/ %>" />
+                                        <% if (request.getAttribute("famille")!= null) out.print("checked=\"checked\""); %> />
                                         <label for="idFamille">Famille</label><br />
                                 </div>
                             </div>
                         </dd>
-                    </dl>-->
+                    </dl>
 					<input type="submit" value="Valider" class="button small success"/>
 					<input type="button" value="Reset" onclick="reset();" class="button small alert"  />
 						

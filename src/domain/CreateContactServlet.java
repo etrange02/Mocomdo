@@ -49,7 +49,12 @@ public class CreateContactServlet extends HttpServlet {
 		
 		if (request.getParameter("entreprise") != null) {
 			Entreprise e = (Entreprise) context.getBean("beanEntreprise");
-			e.setNumSiret(Integer.parseInt(request.getParameter("numSiret")));
+			try {
+				e.setNumSiret(Integer.parseInt(request.getParameter("numSiret")));
+			} catch (NumberFormatException nfe) {
+				response.sendRedirect("CreateContact.jsp");
+				return;
+			}
 			c = e;
 		} else {
 			c = (Contact) context.getBean("beanContact");

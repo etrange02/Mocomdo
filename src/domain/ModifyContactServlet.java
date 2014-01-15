@@ -2,6 +2,7 @@ package domain;
 
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -46,18 +47,15 @@ public class ModifyContactServlet extends HttpServlet {
 			RequestDispatcher jsp = request.getRequestDispatcher("ModifyContact.jsp");
 			request.setAttribute("contact", contact);
 			request.setAttribute("address", contact.getAddress());
-			/*Iterator<PhoneNumber> iter = contact.getPhones().iterator();
-			PhoneNumber pn = null;
-			while (iter.hasNext()) {
-				pn = iter.next();
-				request.setAttribute(pn.getPhoneKind(), pn.getPhoneNumber());
-			}
+			
 			Iterator<ContactGroup> it = contact.getBooks().iterator();
-			ContactGroup cg = null;
-			while (it.hasNext()) {
-				cg = it.next();
-				request.setAttribute(cg.getGroupName(), "on");
-			}*/
+			while (it.hasNext())
+			{
+				ContactGroup cg = it.next();
+				request.setAttribute(cg.getGroupName(), cg.getGroupName());
+				System.out.println(cg.getGroupName());
+			}
+
 			jsp.forward(request, response);
 		} else {
 			response.sendRedirect("ModifyContact.jsp");
@@ -87,12 +85,60 @@ public class ModifyContactServlet extends HttpServlet {
 		contact.getAddress().setCountry(request.getParameter("country"));
 		contact.getAddress().setStreet(request.getParameter("street"));
 		contact.getAddress().setZip(request.getParameter("zip"));
-		
-		//Iterator<PhoneNumber> it = contact.getPhones().iterator();
+
+		if (request.getParameter("ami") != null)	
+			checkContactGroup(context, contact, "ami");
+		else
+			uncheckContactGroup(context, contact, "ami");
+		if (request.getParameter("collegue") != null)
+			checkContactGroup(context, contact, "collegue");
+		else
+			uncheckContactGroup(context, contact, "collegue");
+		if (request.getParameter("famille") != null)	
+			checkContactGroup(context, contact, "famille");
+		else
+			uncheckContactGroup(context, contact, "famille");
 		
 		dao.updateContact(contact);
 		
-		response.sendRedirect("ModifyContact.jsp");
+		//response.sendRedirect("ModifyContact.jsp?id=" + request.getParameter("id"));
+		doGet(request, response);
+	}
+	
+	private void checkContactGroup(ApplicationContext context, Contact contact, String name) {
+		if (containsGroup(contact.getBooks(), name))
+			return;
+		DAOContactGroup daoGroup = (DAOContactGroup) context.getBean("beanDAOContactGroup");
+		ContactGroup cg = daoGroup.searchContactGroup(name);
+		if (cg == null) {
+			cg = new ContactGroup();
+			cg.setGroupName(name);
+		}
+		cg.getContacts().add(contact);
+		contact.getBooks().add(cg);
+		daoGroup.createContactGroup(cg);
+	}
+	
+	private void uncheckContactGroup(ApplicationContext context, Contact contact, String name) {
+		Iterator<ContactGroup> it = contact.getBooks().iterator();
+		while (it.hasNext()) {
+			ContactGroup cg = it.next();
+			if (cg.getGroupName().equals(name)) {
+				contact.getBooks().remove(cg);
+				cg.getContacts().remove(contact);
+				return;
+			}
+		}
+	}
+	
+	private boolean containsGroup(List<ContactGroup> list, String name) {
+		Iterator<ContactGroup> it = list.iterator();
+		while (it.hasNext()) {
+			ContactGroup cg = it.next();
+			if (cg.getGroupName().equals(name))
+				return true;
+		}
+		return false;
 	}
 
 }

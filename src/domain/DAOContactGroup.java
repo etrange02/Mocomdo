@@ -21,6 +21,25 @@ public class DAOContactGroup extends HibernateDaoSupport {
 		this.hibernateTemplate = new HibernateTemplate(sessionFactory);
 	}
 	
+	public void createContactGroup(final ContactGroup contactGroup) {
+		this.getHibernateTemplate().execute(new HibernateCallback<ContactGroup>() {
+
+			@Override
+			public ContactGroup doInHibernate(Session session) throws HibernateException, SQLException {
+				session.save(contactGroup);
+				Iterator<Contact> iter = contactGroup.getContacts().iterator();
+				while (iter.hasNext()) {
+					session.saveOrUpdate(iter.next());
+				}
+				return null;
+			}
+		});
+	}
+	
+	public void updateContactGroup(final ContactGroup contactGroup) {
+		this.getHibernateTemplate().update(contactGroup);
+	}
+	
 	public ContactGroup searchContactGroup(final String criteria) {
 		return (ContactGroup) this.getHibernateTemplate().execute(new HibernateCallback<ContactGroup>() {
 			@Override
@@ -28,14 +47,20 @@ public class DAOContactGroup extends HibernateDaoSupport {
 				ArrayList<ContactGroup> contactGroups =
 						(ArrayList<ContactGroup>) session.createCriteria(ContactGroup.class)
 						.add(Restrictions.ilike("groupName", criteria)).list();
+				
+				if (contactGroups.isEmpty())
+					return null;
 					
-				ContactGroup contactGroup = (contactGroups.isEmpty() ? null : contactGroups.get(0));
+				ContactGroup contactGroup = contactGroups.get(0);
 				if (contactGroup != null) {
 					Iterator<Contact> it = contactGroup.getContacts().iterator();
 					while(it.hasNext()) {
-						Iterator<ContactGroup> iter = it.next().getBooks().iterator();
-						while (iter.hasNext())
-							iter.next().getGroupId();
+						Contact c = it.next();
+						if (c != null) {
+							Iterator<ContactGroup> iter = c.getBooks().iterator();
+							while (iter.hasNext())
+								iter.next().getGroupId();
+						}
 					}
 				}
 				return contactGroup;

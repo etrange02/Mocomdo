@@ -44,34 +44,6 @@ public class DAOContact extends HibernateDaoSupport {
 	
 	public void updateContact(final Contact contact) {
 		this.getHibernateTemplate().update(contact);
-		
-		
-		/*Session session = null;
-		
-		try{
-			session = HibernateUtil.getSessionFactory().openSession();
-			Transaction tx = session.beginTransaction();
-			session.update(contact);
-			
-			/ *Iterator<ContactGroup> iter = contact.getBooks().iterator();
-			while (iter.hasNext()) {
-				session.saveOrUpdate(iter.next());
-			}
-
-			Iterator<PhoneNumber> iter2 = contact.getPhones().iterator();
-			while (iter2.hasNext()) {
-				session.saveOrUpdate(iter2.next());
-			}* /
-			
-			tx.commit();
-			session.close();
-			
-			System.out.println("\nok\n");
-			
-		} catch(Exception e){
-			System.out.println("ERREUR update");
-			System.out.println(e.getMessage());
-		}*/
 	}
 
 	public void removeContact(final int id) {
@@ -86,6 +58,16 @@ public class DAOContact extends HibernateDaoSupport {
 			}
 		});
 	}
+	
+	public ArrayList<Contact> GetAllContacts() {
+		return (ArrayList<Contact>) getHibernateTemplate().executeFind(new HibernateCallback<ArrayList<Contact>>() {
+			@Override
+			public ArrayList<Contact> doInHibernate(Session session) throws HibernateException, SQLException {
+				Query query = session.createQuery("from Contact");
+				return (ArrayList<Contact>) query.list();
+			}
+		});
+	}
 
 	/// From type request
 	/// Search with member name
@@ -96,7 +78,6 @@ public class DAOContact extends HibernateDaoSupport {
 				Query query = session.createQuery("from Contact as c where c.firstname = ? or c.lastname = ?");
 				query.setString(0, criteria);
 				query.setString(1, criteria);
-				//query.setFirstResult(0).setMaxResults(10);
 				return (ArrayList<Contact>) query.list();
 			}
 		});
@@ -108,9 +89,6 @@ public class DAOContact extends HibernateDaoSupport {
 		return (ArrayList<Contact>) this.getHibernateTemplate().executeFind(new HibernateCallback<ArrayList<Contact>>() {
 			@Override
 			public ArrayList<Contact> doInHibernate(Session session) throws HibernateException, SQLException {
-				/*StringBuffer phoneRequest = new StringBuffer("%");
-				phoneRequest.append(phone);
-				phoneRequest.append("%");*/
 				return (ArrayList<Contact>) session.createCriteria(Contact.class).createCriteria("phones")
 					.add(Restrictions.ilike("phoneNumber", phone))
 					.list();
