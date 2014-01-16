@@ -48,51 +48,22 @@ public class DAOContactGroup extends HibernateDaoSupport {
 						(ArrayList<ContactGroup>) session.createCriteria(ContactGroup.class)
 						.add(Restrictions.ilike("groupName", criteria)).list();
 				
-				if (contactGroups.isEmpty())
+				if (contactGroups.isEmpty()) {
 					return null;
+				}
 					
 				ContactGroup contactGroup = contactGroups.get(0);
-				if (contactGroup != null) {
-					Iterator<Contact> it = contactGroup.getContacts().iterator();
-					while(it.hasNext()) {
-						Contact c = it.next();
-						if (c != null) {
-							Iterator<ContactGroup> iter = c.getBooks().iterator();
-							while (iter.hasNext())
-								iter.next().getGroupId();
-						}
+				Iterator<Contact> it = contactGroup.getContacts().iterator();
+				while(it.hasNext()) {
+					Contact c = it.next();
+					if (c != null) {
+						Iterator<ContactGroup> iter = c.getBooks().iterator();
+						while (iter.hasNext())
+							iter.next().getGroupId();
 					}
-				}
+				}			
 				return contactGroup;
 			}
 		});
-		
-		
-		/*Session session = null;
-		ContactGroup contactGroup = null;
-		try {
-			session = HibernateUtil.getSessionFactory().openSession();
-			
-			ArrayList<ContactGroup> contactGroups =
-				(ArrayList<ContactGroup>) session.createCriteria(ContactGroup.class)
-				.add(Restrictions.ilike("groupName", criteria)).list();
-			
-			contactGroup = (contactGroups.isEmpty() ? null : contactGroups.get(0));
-			if (contactGroup != null) {
-				Iterator<Contact> it = contactGroup.getContacts().iterator();
-				while(it.hasNext()) {
-					Iterator<ContactGroup> iter = it.next().getBooks().iterator();
-					while (iter.hasNext())
-						iter.next().getGroupId();
-				}
-			}
-			
-			session.flush();
-			/ *session.clear();* /
-			session.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return contactGroup;*/
 	}
 }

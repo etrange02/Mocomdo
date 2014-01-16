@@ -20,9 +20,9 @@
         <property name="mappingResources">
             <list>
               <value>domain/Contact.hbm.xml</value>
-              <value>domain/PhoneNumber.hbm.xml</value>
               <value>domain/ContactGroup.hbm.xml</value>
               <value>domain/Address.hbm.xml</value>
+              <value>domain/PhoneNumber.hbm.xml</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -96,23 +96,8 @@
         <property name="zip" value="75006" />
         <property name="country" value="France" />
     </bean>
-    <bean id="phone1" class="domain.PhoneNumber" scope="prototype">
-        <property name="phoneKind" value="homephone" />
-        <property name="phoneNumber" value="0123456" />
-        <!-- <property name="contact"><ref bean="person2" /></property> -->
-    </bean>
-    <bean id="phone2" class="domain.PhoneNumber" scope="prototype">
-        <property name="phoneKind" value="cellphone" />
-        <property name="phoneNumber" value="0987654" />
-        <!-- <property name="contact"><ref bean="person2" /></property> -->
-    </bean>
     <bean id="group1" class="domain.ContactGroup" scope="prototype">
         <property name="groupName" value="ami" />
-        <!-- <property name="contacts">
-            <list>
-                <ref bean="person2" />
-            </list>
-        </property> -->
     </bean>
     <bean id="person1" class="domain.Contact" scope="prototype">
         <property name="firstname" value="David" />
@@ -129,8 +114,8 @@
         <property name="address"><ref bean="beanAddressParis" /></property>
         <property name="phones">
             <list>
-                <!-- <ref bean="phone1" />
-                <ref bean="phone2" /> -->
+                <!-- <ref bean="phone1" /> -->
+                <!-- <ref bean="phone2" /> -->
             </list>
         </property>
         <property name="books">
@@ -138,6 +123,16 @@
                 <ref bean="group1" />
             </list>
         </property>
+    </bean>
+    <bean id="phone1" class="domain.PhoneNumber" scope="prototype">
+        <property name="phoneKind" value="homephone" />
+        <property name="phoneNumber" value="123456" />
+        <property name="contact"><ref bean="person2" /></property>
+    </bean>
+    <bean id="phone2" class="domain.PhoneNumber" scope="prototype">
+        <property name="phoneKind" value="cellphone" />
+        <property name="phoneNumber" value="987654" />
+        <property name="contact"><ref bean="person2" /></property>
     </bean>
     
     <!-- AOP -->

@@ -91,26 +91,24 @@ public class CreateContactServlet extends HttpServlet {
 			contactGroups.add(cg);
 		}
 		c.setBooks(contactGroups);
-		
-		
-		List<PhoneNumber> pns = new ArrayList<PhoneNumber>();		
-		if (!request.getParameter("homephone").isEmpty()) {
+			
+		if (request.getParameter("homephone") != null) {
 			PhoneNumber pn = (PhoneNumber) context.getBean("beanPhoneNumber");			
 			pn.setPhoneNumber(request.getParameter("homephone"));
 			pn.setPhoneKind("homephone");
-			pns.add(pn);
+			c.getPhones().add(pn);
 		}
-		if (!request.getParameter("officephone").isEmpty()) {
+		if (request.getParameter("officephone") != null) {
 			PhoneNumber pn = (PhoneNumber) context.getBean("beanPhoneNumber");
 			pn.setPhoneNumber(request.getParameter("officephone"));
 			pn.setPhoneKind("officephone");
-			pns.add(pn);
+			c.getPhones().add(pn);
 		}
-		if (!request.getParameter("cellphone").isEmpty()) {
+		if (request.getParameter("cellphone") != null) {
 			PhoneNumber pn = (PhoneNumber) context.getBean("beanPhoneNumber");
 			pn.setPhoneNumber(request.getParameter("cellphone"));
 			pn.setPhoneKind("cellphone");
-			pns.add(pn);
+			c.getPhones().add(pn);
 		}
 		
 		dao.createContact(c);

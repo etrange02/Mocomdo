@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.classic.Session;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -54,6 +55,14 @@ public class ModifyContactServlet extends HttpServlet {
 				ContactGroup cg = it.next();
 				request.setAttribute(cg.getGroupName(), cg.getGroupName());
 				System.out.println(cg.getGroupName());
+			}
+			
+			Iterator<PhoneNumber> iter = contact.getPhones().iterator();
+			while (iter.hasNext())
+			{
+				PhoneNumber pn = iter.next();
+				request.setAttribute(pn.getPhoneKind(), pn.getPhoneNumber());
+				System.out.println(pn.getPhoneKind() + ":" +  pn.getPhoneNumber());
 			}
 
 			jsp.forward(request, response);
@@ -111,12 +120,14 @@ public class ModifyContactServlet extends HttpServlet {
 		DAOContactGroup daoGroup = (DAOContactGroup) context.getBean("beanDAOContactGroup");
 		ContactGroup cg = daoGroup.searchContactGroup(name);
 		if (cg == null) {
-			cg = new ContactGroup();
+			System.out.println("CG NULL !");
+			cg = (ContactGroup) context.getBean("beanContactGroup");
 			cg.setGroupName(name);
+			daoGroup.createContactGroup(cg);
 		}
 		cg.getContacts().add(contact);
 		contact.getBooks().add(cg);
-		daoGroup.createContactGroup(cg);
+		daoGroup.updateContactGroup(cg);
 	}
 	
 	private void uncheckContactGroup(ApplicationContext context, Contact contact, String name) {

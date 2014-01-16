@@ -22,8 +22,8 @@ public class Contact {
 		this.email="";
 		this.id=-1;
 		this.address = null;
-		this.books = new ArrayList<>();
-		this.phones = new ArrayList<>();
+		this.books = new ArrayList<ContactGroup>();
+		this.phones = new ArrayList<PhoneNumber>();
 	}
 
 	public List<ContactGroup> getBooks() {
@@ -31,15 +31,8 @@ public class Contact {
 	}
 
 	public void setBooks(List<ContactGroup> books) {
-		this.books = books;
-		
-		ContactGroup cg = null;
-		Iterator<ContactGroup> it = books.iterator();
-		while (it.hasNext()) {
-			cg = it.next();
-			if (!cg.getContacts().contains(this))
-				cg.getContacts().add(this);
-		}
+		if (books != null)
+			this.books = books;
 	}
 	
 	public List<PhoneNumber> getPhones() {
@@ -47,15 +40,8 @@ public class Contact {
 	}
 
 	public void setPhones(List<PhoneNumber> phones) {
-		this.phones = phones;
-		
-		PhoneNumber pn = null;
-		Iterator<PhoneNumber> it = phones.iterator();
-		while (it.hasNext()) {
-			pn = it.next();
-			if (pn.getContact() == null)
-				pn.setContact(this);
-		}
+		if (phones != null)
+			this.phones = phones;
 	}
 
 	public Address getAddress() {
@@ -63,7 +49,8 @@ public class Contact {
 	}
 
 	public void setAddress(Address address) {
-		this.address = address;
+		if (address != null)
+			this.address = address;
 	}
 
 	public String getFirstname() {

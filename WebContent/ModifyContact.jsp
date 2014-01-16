@@ -120,19 +120,19 @@
                                 <div class="input-wrapper">
                                     <label for="idhomephone">Home Phone Number</label> <input
                                         type="text" name="homephone" id="idhomephone" 
-                                        value="<% /*if (request.getAttribute("homephone") != null)
-                                               out.print((String) request.getAttribute("homephone") );*/
+                                        value="<% if (request.getAttribute("homephone") != null)
+                                               out.print((String) request.getAttribute("homephone") );
                                         %>" />
                                 </div>
                                 <div class="input-wrapper">
                                     <label for="idofficephone">Office Phone Number</label> <input
                                         type="text" name="officephone" id="idofficephone" 
-                                        value="<% /*if (request.getAttribute("officephone") != null) out.print( request.getAttribute("officephone") );*/ %>" />
+                                        value="<% if (request.getAttribute("officephone") != null) out.print( request.getAttribute("officephone") ); %>" />
                                 </div>
                                 <div class="input-wrapper">
                                     <label for="idcellphone">Cellphone Number</label> <input
                                         type="text" name="cellphone" id="idcellphone" 
-                                        value="<% /*if (request.getAttribute("cellphone")!= null) out.print( request.getAttribute("cellphone") );*/ %>" />
+                                        value="<% if (request.getAttribute("cellphone")!= null) out.print( request.getAttribute("cellphone") ); %>" />
                                 </div>
                             </div>
                         </dd>
